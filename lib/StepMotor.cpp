@@ -4,28 +4,36 @@
 	StepMotor::StepMotor(GPIO_TypeDef *GPIOx_Enable, uint16_t pin_Enable,GPIO_TypeDef *GPIOx_Dir,
 			uint16_t pin_Dir, TIM_HandleTypeDef *htim_PWM, uint32_t Channel)
 	{
+
+		htim_PWM-> Instance->CR1 |=  TIM_CR1_ARPE;
+
+		//---------------------------
+		// pinout
 		m_GPIOx_Enable = GPIOx_Enable;
 		m_GPIOx_Dir = GPIOx_Dir;
-
 		p_htim_PWM = htim_PWM;			// pointer to taimer
 		m_Channel = Channel;			// chanel taimer
-
-		m_direction = 0;
-		m_pin_enable = pin_Enable;
+		m_pin_enable = pin_Enable;		// pin enable
 		m_pin_Dir = pin_Dir;
-		pwm = 0;
-		m_counterSteps = 0;
-		m_nStepsforRun = 0;
-		m_speed = 0;
-		m_MaxSpeed = 0;
-		m_MinSpeed = 0;
-		m_Retention = 0;
-		m_AccelerationKoefficient = 0;
-		m_LastAcceleration_time = 0;
-		m_FlagRazgona = 0;
-		m_FlagTormoza = 0;
-		m_inMotion = 0;
-		m_stepEndAccep = 0;
+
+		//---------------------------
+		m_speed = 0;					// now speed
+		m_MaxSpeed = 0;					// max speed
+		m_MinSpeed = 0;					// min speed
+		//---------------------------
+		m_direction = 0;				// direction 1 - left, 0 - right
+		m_counterSteps = 0;				// counter steps
+		m_nStepsForMotion = 0;			// all steps
+		//---------------------------
+		m_Retention = 0;				// retention
+		//---------------------------
+		typeMotion = NO_MOTION;
+		//---------------------------
+		m_AccelerationStep = 0;
+		m_stepEndAcceleration = 0;
+		m_brakeSteps = 0;
+		m_stepsStartBrake = 0;
+
 		htim_PWM-> Instance->CR1 |=  TIM_CR1_ARPE;
 
 	}
@@ -43,34 +51,27 @@
 			HAL_GPIO_WritePin(m_GPIOx_Dir, m_pin_Dir, GPIO_PIN_RESET);
 		}
 
-		if(m_counterSteps < m_nStepsforRun)
+		if(m_counterSteps < m_nStepsForMotion)
 		{
 			accelerationService(m_counterSteps);
-			m_inMotion = 1;
+			brakeService(m_counterSteps);
 			m_counterSteps++;
-			pwm = 500;
 		}
 		else
 		{
 			m_speed = 0;
-			m_inMotion = 0;
+			typeMotion = NO_MOTION;
 			m_counterSteps = 0;
-			pwm = 0;
 			HAL_TIM_PWM_Stop(p_htim_PWM, m_Channel); 				// остановить шим
 			setRetention(m_Retention);
-
 		}
-
-
 	}
 
 	void StepMotor::checkMotorInCallback(TIM_HandleTypeDef *htim)
 	{
-
 		if(htim == this->p_htim_PWM)
 			{
 				motorService();
-				//htim->Instance->CCR1 = pwm;
 			}
 	}
 
@@ -86,11 +87,11 @@
 
 	void StepMotor::startMotion(uint32_t steps)
 	{
-		if(m_inMotion == 0)
+		if(typeMotion == NO_MOTION)
 		{
-		m_FlagRazgona = true;
-		m_nStepsforRun = steps;
-		HAL_TIM_PWM_Start_IT(p_htim_PWM, TIM_CHANNEL_1);
+			typeMotion = ACCELERATION;
+			m_nStepsForMotion = steps;
+			HAL_TIM_PWM_Start_IT(p_htim_PWM, TIM_CHANNEL_1);
 		}
 	}
 
@@ -140,35 +141,44 @@
 		if(m_speed <= m_MaxSpeed)
 		{
 			m_speed = speed;
-			int arr = HAL_RCC_GetSysClockFreq() / (speed * p_htim_PWM->Instance->PSC);
+			int arr = HAL_RCC_GetSysClockFreq() / (speed * p_htim_PWM->Instance->ARR);
 			p_htim_PWM -> Instance -> ARR = arr - 1;
 			p_htim_PWM -> Instance -> CCR1 = arr / 2;
 		}
 
 	}
 
-	void StepMotor::setAccelerationStep(uint32_t steps, uint32_t stepEndAccep)		// до какого шага увеличение частоты
+	void StepMotor::setAccelerationStep(uint32_t steps, uint32_t stepEndAcceleration)		// до какого шага увеличение частоты
 	{
-		m_AccelerationStep = (m_MaxSpeed - m_MinSpeed) / steps;
-		m_stepEndAccep = stepEndAccep;
-/*		arrSpeed = new uint32_t[steps]{ }; // массив состоит из чисел 1, 2, 3, 4
-
-		for(uint32_t i = 0; i < steps; i ++)
-		{
-			arrSpeed[i] = m_AccelerationStep * (i + 1);
-		}
-		*/
+		m_AccelerationStep = m_MaxSpeed / steps;
+		m_stepEndAcceleration = stepEndAcceleration;
 	}
-// test
-	void StepMotor::accelerationService(int i)
+
+	void StepMotor::accelerationService(uint32_t i)
 	{
-		if (i == 0 || i > m_stepEndAccep)
+		if (i == 0 || i > m_stepEndAcceleration)
 			return;
 
 		if(i % m_AccelerationStep == 0)	//
 		{
 			setSpeed(m_speed + m_AccelerationStep);
-
 		}
 
+	}
+
+	void StepMotor::setBrakeMotorStep(uint32_t stepsBrake, uint32_t stepsForEndBraking)
+	{
+		m_brakeSteps = m_speed / stepsBrake;
+		m_stepsStartBrake = m_nStepsForMotion - stepsForEndBraking;
+	}
+
+	void StepMotor::brakeService(uint32_t i)
+	{
+		if (i == 0 || i > m_stepsStartBrake)
+			return;
+
+		if(i % m_brakeSteps == 0)	//
+		{
+			setSpeed(m_speed - m_brakeSteps);
+		}
 	}
