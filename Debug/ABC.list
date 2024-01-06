@@ -5,47 +5,47 @@ Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .isr_vector   0000010c  08000000  08000000  00010000  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  1 .text         000029c0  0800010c  0800010c  0001010c  2**2
+  1 .text         00002a34  0800010c  0800010c  0001010c  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       00000024  08002acc  08002acc  00012acc  2**2
+  2 .rodata       00000024  08002b40  08002b40  00012b40  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  08002af0  08002af0  0002005c  2**0
+  3 .ARM.extab    00000000  08002b64  08002b64  0002005c  2**0
                   CONTENTS
-  4 .ARM          00000000  08002af0  08002af0  0002005c  2**0
+  4 .ARM          00000000  08002b64  08002b64  0002005c  2**0
                   CONTENTS
-  5 .preinit_array 00000000  08002af0  08002af0  0002005c  2**0
+  5 .preinit_array 00000000  08002b64  08002b64  0002005c  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000004  08002af0  08002af0  00012af0  2**2
+  6 .init_array   00000004  08002b64  08002b64  00012b64  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  7 .fini_array   00000004  08002af4  08002af4  00012af4  2**2
+  7 .fini_array   00000004  08002b68  08002b68  00012b68  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  8 .data         0000005c  20000000  08002af8  00020000  2**2
+  8 .data         0000005c  20000000  08002b6c  00020000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          000001bc  2000005c  08002b54  0002005c  2**2
+  9 .bss          000001bc  2000005c  08002bc8  0002005c  2**2
                   ALLOC
- 10 ._user_heap_stack 00000600  20000218  08002b54  00020218  2**0
+ 10 ._user_heap_stack 00000600  20000218  08002bc8  00020218  2**0
                   ALLOC
  11 .ARM.attributes 00000029  00000000  00000000  0002005c  2**0
                   CONTENTS, READONLY
  12 .comment      00000043  00000000  00000000  00020085  2**0
                   CONTENTS, READONLY
- 13 .debug_info   00009e8c  00000000  00000000  000200c8  2**0
+ 13 .debug_info   00009f81  00000000  00000000  000200c8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_abbrev 00001e7a  00000000  00000000  00029f54  2**0
+ 14 .debug_abbrev 00001e7f  00000000  00000000  0002a049  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_aranges 00000ae0  00000000  00000000  0002bdd0  2**3
+ 15 .debug_aranges 00000af0  00000000  00000000  0002bec8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_rnglists 0000084b  00000000  00000000  0002c8b0  2**0
+ 16 .debug_rnglists 00000857  00000000  00000000  0002c9b8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_macro  00019c53  00000000  00000000  0002d0fb  2**0
+ 17 .debug_macro  00019c53  00000000  00000000  0002d20f  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   0000b9b6  00000000  00000000  00046d4e  2**0
+ 18 .debug_line   0000ba27  00000000  00000000  00046e62  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    0008a683  00000000  00000000  00052704  2**0
+ 19 .debug_str    0008a709  00000000  00000000  00052889  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_frame  000030d8  00000000  00000000  000dcd88  2**2
+ 20 .debug_frame  00003124  00000000  00000000  000dcf94  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 0000005e  00000000  00000000  000dfe60  2**0
+ 21 .debug_line_str 0000005e  00000000  00000000  000e00b8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -64,7 +64,7 @@ Disassembly of section .text:
  8000122:	bd10      	pop	{r4, pc}
  8000124:	2000005c 	.word	0x2000005c
  8000128:	00000000 	.word	0x00000000
- 800012c:	08002ab4 	.word	0x08002ab4
+ 800012c:	08002b28 	.word	0x08002b28
 
 08000130 <frame_dummy>:
  8000130:	b508      	push	{r3, lr}
@@ -76,7 +76,7 @@ Disassembly of section .text:
  800013e:	bd08      	pop	{r3, pc}
  8000140:	00000000 	.word	0x00000000
  8000144:	20000060 	.word	0x20000060
- 8000148:	08002ab4 	.word	0x08002ab4
+ 8000148:	08002b28 	.word	0x08002b28
 
 0800014c <HAL_GPIO_EXTI_Callback>:
 volatile uint32_t time_irq = 0;
@@ -110,7 +110,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)		// вызывает
  800016a:	681b      	ldr	r3, [r3, #0]
  800016c:	6879      	ldr	r1, [r7, #4]
  800016e:	4618      	mov	r0, r3
- 8000170:	f002 fa57 	bl	8002622 <_ZN9StepMotor20checkMotorInCallbackEP17TIM_HandleTypeDef>
+ 8000170:	f002 fa55 	bl	800261e <_ZN9StepMotor20checkMotorInCallbackEP17TIM_HandleTypeDef>
 }
  8000174:	bf00      	nop
  8000176:	3708      	adds	r7, #8
@@ -161,8 +161,8 @@ int main(void)
  8000198:	667b      	str	r3, [r7, #100]	; 0x64
 
   motor = new StepMotor(GPIOA, enable_Pin, GPIOA, dir_Pin, phtim3, TIM_CHANNEL_1);
- 800019a:	2054      	movs	r0, #84	; 0x54
- 800019c:	f002 fb2d 	bl	80027fa <_Znwj>
+ 800019a:	204c      	movs	r0, #76	; 0x4c
+ 800019c:	f002 fb66 	bl	800286c <_Znwj>
  80001a0:	4603      	mov	r3, r0
  80001a2:	461c      	mov	r4, r3
  80001a4:	2300      	movs	r3, #0
@@ -222,38 +222,38 @@ int main(void)
  8000216:	681b      	ldr	r3, [r3, #0]
  8000218:	2100      	movs	r1, #0
  800021a:	4618      	mov	r0, r3
- 800021c:	f002 fa12 	bl	8002644 <_ZN9StepMotor12setDirectionEh>
+ 800021c:	f002 fa10 	bl	8002640 <_ZN9StepMotor12setDirectionEh>
 			motor->setMaxSpeed(60000);
  8000220:	4b33      	ldr	r3, [pc, #204]	; (80002f0 <main+0x170>)
  8000222:	681b      	ldr	r3, [r3, #0]
  8000224:	f64e 2160 	movw	r1, #60000	; 0xea60
  8000228:	4618      	mov	r0, r3
- 800022a:	f002 fa35 	bl	8002698 <_ZN9StepMotor11setMaxSpeedEm>
+ 800022a:	f002 fa38 	bl	800269e <_ZN9StepMotor11setMaxSpeedEm>
 			motor->setMinSpeed(100);
  800022e:	4b30      	ldr	r3, [pc, #192]	; (80002f0 <main+0x170>)
  8000230:	681b      	ldr	r3, [r3, #0]
  8000232:	2164      	movs	r1, #100	; 0x64
  8000234:	4618      	mov	r0, r3
- 8000236:	f002 fa3c 	bl	80026b2 <_ZN9StepMotor11setMinSpeedEm>
+ 8000236:	f002 fa3f 	bl	80026b8 <_ZN9StepMotor11setMinSpeedEm>
 			motor->setAccelerationStep(3000, 30000);
  800023a:	4b2d      	ldr	r3, [pc, #180]	; (80002f0 <main+0x170>)
  800023c:	681b      	ldr	r3, [r3, #0]
  800023e:	f247 5230 	movw	r2, #30000	; 0x7530
  8000242:	f640 31b8 	movw	r1, #3000	; 0xbb8
  8000246:	4618      	mov	r0, r3
- 8000248:	f002 fa9a 	bl	8002780 <_ZN9StepMotor19setAccelerationStepEmm>
+ 8000248:	f002 fa9d 	bl	8002786 <_ZN9StepMotor19setAccelerationStepEmm>
 		  	motor->startMotion(320000);
  800024c:	4b28      	ldr	r3, [pc, #160]	; (80002f0 <main+0x170>)
  800024e:	681b      	ldr	r3, [r3, #0]
  8000250:	4929      	ldr	r1, [pc, #164]	; (80002f8 <main+0x178>)
  8000252:	4618      	mov	r0, r3
- 8000254:	f002 fa05 	bl	8002662 <_ZN9StepMotor11startMotionEm>
+ 8000254:	f002 fa08 	bl	8002668 <_ZN9StepMotor11startMotionEm>
 		  	motor->setRetention(1);
  8000258:	4b25      	ldr	r3, [pc, #148]	; (80002f0 <main+0x170>)
  800025a:	681b      	ldr	r3, [r3, #0]
  800025c:	2101      	movs	r1, #1
  800025e:	4618      	mov	r0, r3
- 8000260:	f002 fa34 	bl	80026cc <_ZN9StepMotor12setRetentionEb>
+ 8000260:	f002 fa37 	bl	80026d2 <_ZN9StepMotor12setRetentionEb>
  8000264:	e7ce      	b.n	8000204 <main+0x84>
 	  }
 	  else if(buttonB13.CheckButton())	//blue
@@ -269,25 +269,25 @@ int main(void)
  8000278:	681b      	ldr	r3, [r3, #0]
  800027a:	2101      	movs	r1, #1
  800027c:	4618      	mov	r0, r3
- 800027e:	f002 f9e1 	bl	8002644 <_ZN9StepMotor12setDirectionEh>
+ 800027e:	f002 f9df 	bl	8002640 <_ZN9StepMotor12setDirectionEh>
 			motor->setMaxSpeed(1600);
  8000282:	4b1b      	ldr	r3, [pc, #108]	; (80002f0 <main+0x170>)
  8000284:	681b      	ldr	r3, [r3, #0]
  8000286:	f44f 61c8 	mov.w	r1, #1600	; 0x640
  800028a:	4618      	mov	r0, r3
- 800028c:	f002 fa04 	bl	8002698 <_ZN9StepMotor11setMaxSpeedEm>
+ 800028c:	f002 fa07 	bl	800269e <_ZN9StepMotor11setMaxSpeedEm>
 			motor->startMotion(1600);
  8000290:	4b17      	ldr	r3, [pc, #92]	; (80002f0 <main+0x170>)
  8000292:	681b      	ldr	r3, [r3, #0]
  8000294:	f44f 61c8 	mov.w	r1, #1600	; 0x640
  8000298:	4618      	mov	r0, r3
- 800029a:	f002 f9e2 	bl	8002662 <_ZN9StepMotor11startMotionEm>
+ 800029a:	f002 f9e5 	bl	8002668 <_ZN9StepMotor11startMotionEm>
 			motor->setRetention(1);
  800029e:	4b14      	ldr	r3, [pc, #80]	; (80002f0 <main+0x170>)
  80002a0:	681b      	ldr	r3, [r3, #0]
  80002a2:	2101      	movs	r1, #1
  80002a4:	4618      	mov	r0, r3
- 80002a6:	f002 fa11 	bl	80026cc <_ZN9StepMotor12setRetentionEb>
+ 80002a6:	f002 fa14 	bl	80026d2 <_ZN9StepMotor12setRetentionEb>
  80002aa:	e7ab      	b.n	8000204 <main+0x84>
 	  }
 	  else if(buttonB15.CheckButton())		// green
@@ -303,7 +303,7 @@ int main(void)
  80002be:	681b      	ldr	r3, [r3, #0]
  80002c0:	2101      	movs	r1, #1
  80002c2:	4618      	mov	r0, r3
- 80002c4:	f002 fa02 	bl	80026cc <_ZN9StepMotor12setRetentionEb>
+ 80002c4:	f002 fa05 	bl	80026d2 <_ZN9StepMotor12setRetentionEb>
  80002c8:	e79c      	b.n	8000204 <main+0x84>
 	  }
 	  else if(buttonB12.CheckButton())			//white
@@ -319,7 +319,7 @@ int main(void)
  80002da:	681b      	ldr	r3, [r3, #0]
  80002dc:	2100      	movs	r1, #0
  80002de:	4618      	mov	r0, r3
- 80002e0:	f002 f9f4 	bl	80026cc <_ZN9StepMotor12setRetentionEb>
+ 80002e0:	f002 f9f7 	bl	80026d2 <_ZN9StepMotor12setRetentionEb>
 	  if(buttonB14.CheckButton())			// red
  80002e4:	e78e      	b.n	8000204 <main+0x84>
  80002e6:	bf00      	nop
@@ -344,7 +344,7 @@ void SystemClock_Config(void)
  8000306:	2228      	movs	r2, #40	; 0x28
  8000308:	2100      	movs	r1, #0
  800030a:	4618      	mov	r0, r3
- 800030c:	f002 fb4a 	bl	80029a4 <memset>
+ 800030c:	f002 fb84 	bl	8002a18 <memset>
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
  8000310:	1d3b      	adds	r3, r7, #4
  8000312:	2200      	movs	r2, #0
@@ -1270,7 +1270,7 @@ int _kill(int pid, int sig)
   (void)pid;
   (void)sig;
   errno = EINVAL;
- 8000798:	f002 f960 	bl	8002a5c <__errno>
+ 8000798:	f002 f99a 	bl	8002ad0 <__errno>
  800079c:	4603      	mov	r3, r0
  800079e:	2216      	movs	r2, #22
  80007a0:	601a      	str	r2, [r3, #0]
@@ -1346,7 +1346,7 @@ void *_sbrk(ptrdiff_t incr)
  80007f2:	d207      	bcs.n	8000804 <_sbrk+0x40>
   {
     errno = ENOMEM;
- 80007f4:	f002 f932 	bl	8002a5c <__errno>
+ 80007f4:	f002 f96c 	bl	8002ad0 <__errno>
  80007f8:	4603      	mov	r3, r0
  80007fa:	220c      	movs	r2, #12
  80007fc:	601a      	str	r2, [r3, #0]
@@ -1468,7 +1468,7 @@ LoopFillZerobss:
 
 /* Call static constructors */
     bl __libc_init_array
- 8000866:	f002 f8ff 	bl	8002a68 <__libc_init_array>
+ 8000866:	f002 f939 	bl	8002adc <__libc_init_array>
 /* Call the application's entry point.*/
   bl main
  800086a:	f7ff fc89 	bl	8000180 <main>
@@ -1479,7 +1479,7 @@ LoopFillZerobss:
   ldr r1, =_edata
  8000874:	2000005c 	.word	0x2000005c
   ldr r2, =_sidata
- 8000878:	08002af8 	.word	0x08002af8
+ 8000878:	08002b6c 	.word	0x08002b6c
   ldr r2, =_sbss
  800087c:	2000005c 	.word	0x2000005c
   ldr r4, =_ebss
@@ -3876,7 +3876,7 @@ if (((RCC_ClkInitStruct->ClockType) & RCC_CLOCKTYPE_PCLK1) == RCC_CLOCKTYPE_PCLK
  80015c2:	bf00      	nop
  80015c4:	40022000 	.word	0x40022000
  80015c8:	40021000 	.word	0x40021000
- 80015cc:	08002acc 	.word	0x08002acc
+ 80015cc:	08002b40 	.word	0x08002b40
  80015d0:	20000000 	.word	0x20000000
  80015d4:	20000004 	.word	0x20000004
 
@@ -4011,8 +4011,8 @@ uint32_t HAL_RCC_GetSysClockFreq(void)
  800166a:	bf00      	nop
  800166c:	40021000 	.word	0x40021000
  8001670:	007a1200 	.word	0x007a1200
- 8001674:	08002adc 	.word	0x08002adc
- 8001678:	08002aec 	.word	0x08002aec
+ 8001674:	08002b50 	.word	0x08002b50
+ 8001678:	08002b60 	.word	0x08002b60
  800167c:	003d0900 	.word	0x003d0900
 
 08001680 <RCC_Delay>:
@@ -6654,88 +6654,97 @@ else
  80024c0:	80fb      	strh	r3, [r7, #6]
 			uint16_t pin_Dir, TIM_HandleTypeDef *htim_PWM, uint32_t Channel)
 	{
+
+		htim_PWM-> Instance->CR1 |=  TIM_CR1_ARPE;
+ 80024c2:	69fb      	ldr	r3, [r7, #28]
+ 80024c4:	681b      	ldr	r3, [r3, #0]
+ 80024c6:	681a      	ldr	r2, [r3, #0]
+ 80024c8:	69fb      	ldr	r3, [r7, #28]
+ 80024ca:	681b      	ldr	r3, [r3, #0]
+ 80024cc:	f042 0280 	orr.w	r2, r2, #128	; 0x80
+ 80024d0:	601a      	str	r2, [r3, #0]
+
+		//---------------------------
+		// pinout
 		m_GPIOx_Enable = GPIOx_Enable;
- 80024c2:	68fb      	ldr	r3, [r7, #12]
- 80024c4:	68ba      	ldr	r2, [r7, #8]
- 80024c6:	609a      	str	r2, [r3, #8]
+ 80024d2:	68fb      	ldr	r3, [r7, #12]
+ 80024d4:	68ba      	ldr	r2, [r7, #8]
+ 80024d6:	605a      	str	r2, [r3, #4]
 		m_GPIOx_Dir = GPIOx_Dir;
- 80024c8:	68fb      	ldr	r3, [r7, #12]
- 80024ca:	683a      	ldr	r2, [r7, #0]
- 80024cc:	60da      	str	r2, [r3, #12]
-
+ 80024d8:	68fb      	ldr	r3, [r7, #12]
+ 80024da:	683a      	ldr	r2, [r7, #0]
+ 80024dc:	609a      	str	r2, [r3, #8]
 		p_htim_PWM = htim_PWM;			// pointer to taimer
- 80024ce:	68fb      	ldr	r3, [r7, #12]
- 80024d0:	69fa      	ldr	r2, [r7, #28]
- 80024d2:	61da      	str	r2, [r3, #28]
+ 80024de:	68fb      	ldr	r3, [r7, #12]
+ 80024e0:	69fa      	ldr	r2, [r7, #28]
+ 80024e2:	619a      	str	r2, [r3, #24]
 		m_Channel = Channel;			// chanel taimer
- 80024d4:	68fb      	ldr	r3, [r7, #12]
- 80024d6:	6a3a      	ldr	r2, [r7, #32]
- 80024d8:	621a      	str	r2, [r3, #32]
-
-		m_direction = 0;
- 80024da:	68fb      	ldr	r3, [r7, #12]
- 80024dc:	2200      	movs	r2, #0
- 80024de:	f883 2024 	strb.w	r2, [r3, #36]	; 0x24
-		m_pin_enable = pin_Enable;
- 80024e2:	68fb      	ldr	r3, [r7, #12]
- 80024e4:	88fa      	ldrh	r2, [r7, #6]
- 80024e6:	829a      	strh	r2, [r3, #20]
+ 80024e4:	68fb      	ldr	r3, [r7, #12]
+ 80024e6:	6a3a      	ldr	r2, [r7, #32]
+ 80024e8:	61da      	str	r2, [r3, #28]
+		m_pin_enable = pin_Enable;		// pin enable
+ 80024ea:	68fb      	ldr	r3, [r7, #12]
+ 80024ec:	88fa      	ldrh	r2, [r7, #6]
+ 80024ee:	821a      	strh	r2, [r3, #16]
 		m_pin_Dir = pin_Dir;
- 80024e8:	68fb      	ldr	r3, [r7, #12]
- 80024ea:	8b3a      	ldrh	r2, [r7, #24]
- 80024ec:	82da      	strh	r2, [r3, #22]
-		pwm = 0;
- 80024ee:	68fb      	ldr	r3, [r7, #12]
- 80024f0:	2200      	movs	r2, #0
- 80024f2:	601a      	str	r2, [r3, #0]
-		m_counterSteps = 0;
- 80024f4:	68fb      	ldr	r3, [r7, #12]
- 80024f6:	2200      	movs	r2, #0
- 80024f8:	605a      	str	r2, [r3, #4]
-		m_nStepsforRun = 0;
- 80024fa:	68fb      	ldr	r3, [r7, #12]
- 80024fc:	2200      	movs	r2, #0
- 80024fe:	629a      	str	r2, [r3, #40]	; 0x28
-		m_speed = 0;
- 8002500:	68fb      	ldr	r3, [r7, #12]
- 8002502:	2200      	movs	r2, #0
- 8002504:	649a      	str	r2, [r3, #72]	; 0x48
-		m_MaxSpeed = 0;
- 8002506:	68fb      	ldr	r3, [r7, #12]
- 8002508:	2200      	movs	r2, #0
- 800250a:	62da      	str	r2, [r3, #44]	; 0x2c
-		m_MinSpeed = 0;
- 800250c:	68fb      	ldr	r3, [r7, #12]
- 800250e:	2200      	movs	r2, #0
- 8002510:	631a      	str	r2, [r3, #48]	; 0x30
-		m_Retention = 0;
- 8002512:	68fb      	ldr	r3, [r7, #12]
- 8002514:	2200      	movs	r2, #0
- 8002516:	f883 2034 	strb.w	r2, [r3, #52]	; 0x34
-		m_AccelerationKoefficient = 0;
- 800251a:	68fb      	ldr	r3, [r7, #12]
- 800251c:	2200      	movs	r2, #0
- 800251e:	639a      	str	r2, [r3, #56]	; 0x38
-		m_LastAcceleration_time = 0;
- 8002520:	68fb      	ldr	r3, [r7, #12]
- 8002522:	2200      	movs	r2, #0
- 8002524:	63da      	str	r2, [r3, #60]	; 0x3c
-		m_FlagRazgona = 0;
- 8002526:	68fb      	ldr	r3, [r7, #12]
- 8002528:	2200      	movs	r2, #0
- 800252a:	f883 2050 	strb.w	r2, [r3, #80]	; 0x50
-		m_FlagTormoza = 0;
- 800252e:	68fb      	ldr	r3, [r7, #12]
- 8002530:	2200      	movs	r2, #0
- 8002532:	f883 2051 	strb.w	r2, [r3, #81]	; 0x51
-		m_inMotion = 0;
- 8002536:	68fb      	ldr	r3, [r7, #12]
- 8002538:	2200      	movs	r2, #0
- 800253a:	f883 2044 	strb.w	r2, [r3, #68]	; 0x44
-		m_stepEndAccep = 0;
+ 80024f0:	68fb      	ldr	r3, [r7, #12]
+ 80024f2:	8b3a      	ldrh	r2, [r7, #24]
+ 80024f4:	825a      	strh	r2, [r3, #18]
+
+		//---------------------------
+		m_speed = 0;					// now speed
+ 80024f6:	68fb      	ldr	r3, [r7, #12]
+ 80024f8:	2200      	movs	r2, #0
+ 80024fa:	639a      	str	r2, [r3, #56]	; 0x38
+		m_MaxSpeed = 0;					// max speed
+ 80024fc:	68fb      	ldr	r3, [r7, #12]
+ 80024fe:	2200      	movs	r2, #0
+ 8002500:	629a      	str	r2, [r3, #40]	; 0x28
+		m_MinSpeed = 0;					// min speed
+ 8002502:	68fb      	ldr	r3, [r7, #12]
+ 8002504:	2200      	movs	r2, #0
+ 8002506:	62da      	str	r2, [r3, #44]	; 0x2c
+		//---------------------------
+		m_direction = 0;				// direction 1 - left, 0 - right
+ 8002508:	68fb      	ldr	r3, [r7, #12]
+ 800250a:	2200      	movs	r2, #0
+ 800250c:	f883 2020 	strb.w	r2, [r3, #32]
+		m_counterSteps = 0;				// counter steps
+ 8002510:	68fb      	ldr	r3, [r7, #12]
+ 8002512:	2200      	movs	r2, #0
+ 8002514:	601a      	str	r2, [r3, #0]
+		m_nStepsForMotion = 0;			// all steps
+ 8002516:	68fb      	ldr	r3, [r7, #12]
+ 8002518:	2200      	movs	r2, #0
+ 800251a:	625a      	str	r2, [r3, #36]	; 0x24
+		//---------------------------
+		m_Retention = 0;				// retention
+ 800251c:	68fb      	ldr	r3, [r7, #12]
+ 800251e:	2200      	movs	r2, #0
+ 8002520:	f883 2030 	strb.w	r2, [r3, #48]	; 0x30
+		//---------------------------
+		typeMotion = NO_MOTION;
+ 8002524:	68fb      	ldr	r3, [r7, #12]
+ 8002526:	2200      	movs	r2, #0
+ 8002528:	f883 2048 	strb.w	r2, [r3, #72]	; 0x48
+		//---------------------------
+		m_AccelerationStep = 0;
+ 800252c:	68fb      	ldr	r3, [r7, #12]
+ 800252e:	2200      	movs	r2, #0
+ 8002530:	635a      	str	r2, [r3, #52]	; 0x34
+		m_stepEndAcceleration = 0;
+ 8002532:	68fb      	ldr	r3, [r7, #12]
+ 8002534:	2200      	movs	r2, #0
+ 8002536:	63da      	str	r2, [r3, #60]	; 0x3c
+		m_brakeSteps = 0;
+ 8002538:	68fb      	ldr	r3, [r7, #12]
+ 800253a:	2200      	movs	r2, #0
+ 800253c:	641a      	str	r2, [r3, #64]	; 0x40
+		m_stepsStartBrake = 0;
  800253e:	68fb      	ldr	r3, [r7, #12]
  8002540:	2200      	movs	r2, #0
- 8002542:	64da      	str	r2, [r3, #76]	; 0x4c
+ 8002542:	645a      	str	r2, [r3, #68]	; 0x44
+
 		htim_PWM-> Instance->CR1 |=  TIM_CR1_ARPE;
  8002544:	69fb      	ldr	r3, [r7, #28]
  8002546:	681b      	ldr	r3, [r3, #0]
@@ -6763,392 +6772,383 @@ else
  8002566:	6078      	str	r0, [r7, #4]
 		HAL_GPIO_WritePin(m_GPIOx_Enable, m_pin_enable, GPIO_PIN_RESET);
  8002568:	687b      	ldr	r3, [r7, #4]
- 800256a:	6898      	ldr	r0, [r3, #8]
+ 800256a:	6858      	ldr	r0, [r3, #4]
  800256c:	687b      	ldr	r3, [r7, #4]
- 800256e:	8a9b      	ldrh	r3, [r3, #20]
+ 800256e:	8a1b      	ldrh	r3, [r3, #16]
  8002570:	2200      	movs	r2, #0
  8002572:	4619      	mov	r1, r3
  8002574:	f7fe fc93 	bl	8000e9e <HAL_GPIO_WritePin>
 
 		if(m_direction)
  8002578:	687b      	ldr	r3, [r7, #4]
- 800257a:	f893 3024 	ldrb.w	r3, [r3, #36]	; 0x24
+ 800257a:	f893 3020 	ldrb.w	r3, [r3, #32]
  800257e:	2b00      	cmp	r3, #0
  8002580:	d008      	beq.n	8002594 <_ZN9StepMotor12motorServiceEv+0x34>
 		{
 			HAL_GPIO_WritePin(m_GPIOx_Dir, m_pin_Dir, GPIO_PIN_SET);
  8002582:	687b      	ldr	r3, [r7, #4]
- 8002584:	68d8      	ldr	r0, [r3, #12]
+ 8002584:	6898      	ldr	r0, [r3, #8]
  8002586:	687b      	ldr	r3, [r7, #4]
- 8002588:	8adb      	ldrh	r3, [r3, #22]
+ 8002588:	8a5b      	ldrh	r3, [r3, #18]
  800258a:	2201      	movs	r2, #1
  800258c:	4619      	mov	r1, r3
  800258e:	f7fe fc86 	bl	8000e9e <HAL_GPIO_WritePin>
- 8002592:	e00c      	b.n	80025ae <_ZN9StepMotor12motorServiceEv+0x4e>
+ 8002592:	e00f      	b.n	80025b4 <_ZN9StepMotor12motorServiceEv+0x54>
 		}
 		else if(!m_direction)
  8002594:	687b      	ldr	r3, [r7, #4]
- 8002596:	f893 3024 	ldrb.w	r3, [r3, #36]	; 0x24
- 800259a:	2b00      	cmp	r3, #0
- 800259c:	d107      	bne.n	80025ae <_ZN9StepMotor12motorServiceEv+0x4e>
+ 8002596:	f893 3020 	ldrb.w	r3, [r3, #32]
+ 800259a:	f083 0301 	eor.w	r3, r3, #1
+ 800259e:	b2db      	uxtb	r3, r3
+ 80025a0:	2b00      	cmp	r3, #0
+ 80025a2:	d007      	beq.n	80025b4 <_ZN9StepMotor12motorServiceEv+0x54>
 		{
 			HAL_GPIO_WritePin(m_GPIOx_Dir, m_pin_Dir, GPIO_PIN_RESET);
- 800259e:	687b      	ldr	r3, [r7, #4]
- 80025a0:	68d8      	ldr	r0, [r3, #12]
- 80025a2:	687b      	ldr	r3, [r7, #4]
- 80025a4:	8adb      	ldrh	r3, [r3, #22]
- 80025a6:	2200      	movs	r2, #0
- 80025a8:	4619      	mov	r1, r3
- 80025aa:	f7fe fc78 	bl	8000e9e <HAL_GPIO_WritePin>
+ 80025a4:	687b      	ldr	r3, [r7, #4]
+ 80025a6:	6898      	ldr	r0, [r3, #8]
+ 80025a8:	687b      	ldr	r3, [r7, #4]
+ 80025aa:	8a5b      	ldrh	r3, [r3, #18]
+ 80025ac:	2200      	movs	r2, #0
+ 80025ae:	4619      	mov	r1, r3
+ 80025b0:	f7fe fc75 	bl	8000e9e <HAL_GPIO_WritePin>
 		}
 
-		if(m_counterSteps < m_nStepsforRun)
- 80025ae:	687b      	ldr	r3, [r7, #4]
- 80025b0:	685a      	ldr	r2, [r3, #4]
- 80025b2:	687b      	ldr	r3, [r7, #4]
- 80025b4:	6a9b      	ldr	r3, [r3, #40]	; 0x28
- 80025b6:	429a      	cmp	r2, r3
- 80025b8:	d213      	bcs.n	80025e2 <_ZN9StepMotor12motorServiceEv+0x82>
+		if(m_counterSteps < m_nStepsForMotion)
+ 80025b4:	687b      	ldr	r3, [r7, #4]
+ 80025b6:	681a      	ldr	r2, [r3, #0]
+ 80025b8:	687b      	ldr	r3, [r7, #4]
+ 80025ba:	6a5b      	ldr	r3, [r3, #36]	; 0x24
+ 80025bc:	429a      	cmp	r2, r3
+ 80025be:	d211      	bcs.n	80025e4 <_ZN9StepMotor12motorServiceEv+0x84>
 		{
 			accelerationService(m_counterSteps);
- 80025ba:	687b      	ldr	r3, [r7, #4]
- 80025bc:	685b      	ldr	r3, [r3, #4]
- 80025be:	4619      	mov	r1, r3
- 80025c0:	6878      	ldr	r0, [r7, #4]
- 80025c2:	f000 f8f5 	bl	80027b0 <_ZN9StepMotor19accelerationServiceEi>
-			m_inMotion = 1;
- 80025c6:	687b      	ldr	r3, [r7, #4]
- 80025c8:	2201      	movs	r2, #1
- 80025ca:	f883 2044 	strb.w	r2, [r3, #68]	; 0x44
+ 80025c0:	687b      	ldr	r3, [r7, #4]
+ 80025c2:	681b      	ldr	r3, [r3, #0]
+ 80025c4:	4619      	mov	r1, r3
+ 80025c6:	6878      	ldr	r0, [r7, #4]
+ 80025c8:	f000 f8f2 	bl	80027b0 <_ZN9StepMotor19accelerationServiceEm>
+			brakeService(m_counterSteps);
+ 80025cc:	687b      	ldr	r3, [r7, #4]
+ 80025ce:	681b      	ldr	r3, [r3, #0]
+ 80025d0:	4619      	mov	r1, r3
+ 80025d2:	6878      	ldr	r0, [r7, #4]
+ 80025d4:	f000 f91c 	bl	8002810 <_ZN9StepMotor12brakeServiceEm>
 			m_counterSteps++;
- 80025ce:	687b      	ldr	r3, [r7, #4]
- 80025d0:	685b      	ldr	r3, [r3, #4]
- 80025d2:	1c5a      	adds	r2, r3, #1
- 80025d4:	687b      	ldr	r3, [r7, #4]
- 80025d6:	605a      	str	r2, [r3, #4]
-			pwm = 500;
  80025d8:	687b      	ldr	r3, [r7, #4]
- 80025da:	f44f 72fa 	mov.w	r2, #500	; 0x1f4
- 80025de:	601a      	str	r2, [r3, #0]
-			setRetention(m_Retention);
-
-		}
-
-
-	}
- 80025e0:	e01b      	b.n	800261a <_ZN9StepMotor12motorServiceEv+0xba>
-			m_speed = 0;
- 80025e2:	687b      	ldr	r3, [r7, #4]
- 80025e4:	2200      	movs	r2, #0
- 80025e6:	649a      	str	r2, [r3, #72]	; 0x48
-			m_inMotion = 0;
- 80025e8:	687b      	ldr	r3, [r7, #4]
- 80025ea:	2200      	movs	r2, #0
- 80025ec:	f883 2044 	strb.w	r2, [r3, #68]	; 0x44
+ 80025da:	681b      	ldr	r3, [r3, #0]
+ 80025dc:	1c5a      	adds	r2, r3, #1
+ 80025de:	687b      	ldr	r3, [r7, #4]
+ 80025e0:	601a      	str	r2, [r3, #0]
+			typeMotion = NO_MOTION;
 			m_counterSteps = 0;
- 80025f0:	687b      	ldr	r3, [r7, #4]
- 80025f2:	2200      	movs	r2, #0
- 80025f4:	605a      	str	r2, [r3, #4]
-			pwm = 0;
- 80025f6:	687b      	ldr	r3, [r7, #4]
- 80025f8:	2200      	movs	r2, #0
- 80025fa:	601a      	str	r2, [r3, #0]
 			HAL_TIM_PWM_Stop(p_htim_PWM, m_Channel); 				// остановить шим
- 80025fc:	687b      	ldr	r3, [r7, #4]
- 80025fe:	69da      	ldr	r2, [r3, #28]
- 8002600:	687b      	ldr	r3, [r7, #4]
- 8002602:	6a1b      	ldr	r3, [r3, #32]
- 8002604:	4619      	mov	r1, r3
- 8002606:	4610      	mov	r0, r2
- 8002608:	f7ff f8fa 	bl	8001800 <HAL_TIM_PWM_Stop>
 			setRetention(m_Retention);
- 800260c:	687b      	ldr	r3, [r7, #4]
- 800260e:	f893 3034 	ldrb.w	r3, [r3, #52]	; 0x34
- 8002612:	4619      	mov	r1, r3
- 8002614:	6878      	ldr	r0, [r7, #4]
- 8002616:	f000 f859 	bl	80026cc <_ZN9StepMotor12setRetentionEb>
+		}
 	}
- 800261a:	bf00      	nop
- 800261c:	3708      	adds	r7, #8
- 800261e:	46bd      	mov	sp, r7
- 8002620:	bd80      	pop	{r7, pc}
+ 80025e2:	e018      	b.n	8002616 <_ZN9StepMotor12motorServiceEv+0xb6>
+			m_speed = 0;
+ 80025e4:	687b      	ldr	r3, [r7, #4]
+ 80025e6:	2200      	movs	r2, #0
+ 80025e8:	639a      	str	r2, [r3, #56]	; 0x38
+			typeMotion = NO_MOTION;
+ 80025ea:	687b      	ldr	r3, [r7, #4]
+ 80025ec:	2200      	movs	r2, #0
+ 80025ee:	f883 2048 	strb.w	r2, [r3, #72]	; 0x48
+			m_counterSteps = 0;
+ 80025f2:	687b      	ldr	r3, [r7, #4]
+ 80025f4:	2200      	movs	r2, #0
+ 80025f6:	601a      	str	r2, [r3, #0]
+			HAL_TIM_PWM_Stop(p_htim_PWM, m_Channel); 				// остановить шим
+ 80025f8:	687b      	ldr	r3, [r7, #4]
+ 80025fa:	699a      	ldr	r2, [r3, #24]
+ 80025fc:	687b      	ldr	r3, [r7, #4]
+ 80025fe:	69db      	ldr	r3, [r3, #28]
+ 8002600:	4619      	mov	r1, r3
+ 8002602:	4610      	mov	r0, r2
+ 8002604:	f7ff f8fc 	bl	8001800 <HAL_TIM_PWM_Stop>
+			setRetention(m_Retention);
+ 8002608:	687b      	ldr	r3, [r7, #4]
+ 800260a:	f893 3030 	ldrb.w	r3, [r3, #48]	; 0x30
+ 800260e:	4619      	mov	r1, r3
+ 8002610:	6878      	ldr	r0, [r7, #4]
+ 8002612:	f000 f85e 	bl	80026d2 <_ZN9StepMotor12setRetentionEb>
+	}
+ 8002616:	bf00      	nop
+ 8002618:	3708      	adds	r7, #8
+ 800261a:	46bd      	mov	sp, r7
+ 800261c:	bd80      	pop	{r7, pc}
 
-08002622 <_ZN9StepMotor20checkMotorInCallbackEP17TIM_HandleTypeDef>:
+0800261e <_ZN9StepMotor20checkMotorInCallbackEP17TIM_HandleTypeDef>:
 
 	void StepMotor::checkMotorInCallback(TIM_HandleTypeDef *htim)
 	{
- 8002622:	b580      	push	{r7, lr}
- 8002624:	b082      	sub	sp, #8
- 8002626:	af00      	add	r7, sp, #0
- 8002628:	6078      	str	r0, [r7, #4]
- 800262a:	6039      	str	r1, [r7, #0]
-
+ 800261e:	b580      	push	{r7, lr}
+ 8002620:	b082      	sub	sp, #8
+ 8002622:	af00      	add	r7, sp, #0
+ 8002624:	6078      	str	r0, [r7, #4]
+ 8002626:	6039      	str	r1, [r7, #0]
 		if(htim == this->p_htim_PWM)
- 800262c:	687b      	ldr	r3, [r7, #4]
- 800262e:	69db      	ldr	r3, [r3, #28]
- 8002630:	683a      	ldr	r2, [r7, #0]
- 8002632:	429a      	cmp	r2, r3
- 8002634:	d102      	bne.n	800263c <_ZN9StepMotor20checkMotorInCallbackEP17TIM_HandleTypeDef+0x1a>
+ 8002628:	687b      	ldr	r3, [r7, #4]
+ 800262a:	699b      	ldr	r3, [r3, #24]
+ 800262c:	683a      	ldr	r2, [r7, #0]
+ 800262e:	429a      	cmp	r2, r3
+ 8002630:	d102      	bne.n	8002638 <_ZN9StepMotor20checkMotorInCallbackEP17TIM_HandleTypeDef+0x1a>
 			{
 				motorService();
- 8002636:	6878      	ldr	r0, [r7, #4]
- 8002638:	f7ff ff92 	bl	8002560 <_ZN9StepMotor12motorServiceEv>
-				//htim->Instance->CCR1 = pwm;
+ 8002632:	6878      	ldr	r0, [r7, #4]
+ 8002634:	f7ff ff94 	bl	8002560 <_ZN9StepMotor12motorServiceEv>
 			}
 	}
- 800263c:	bf00      	nop
- 800263e:	3708      	adds	r7, #8
- 8002640:	46bd      	mov	sp, r7
- 8002642:	bd80      	pop	{r7, pc}
+ 8002638:	bf00      	nop
+ 800263a:	3708      	adds	r7, #8
+ 800263c:	46bd      	mov	sp, r7
+ 800263e:	bd80      	pop	{r7, pc}
 
-08002644 <_ZN9StepMotor12setDirectionEh>:
+08002640 <_ZN9StepMotor12setDirectionEh>:
 
 	void StepMotor::setDirection(uint8_t in_direction)
 	{
- 8002644:	b480      	push	{r7}
- 8002646:	b083      	sub	sp, #12
- 8002648:	af00      	add	r7, sp, #0
- 800264a:	6078      	str	r0, [r7, #4]
- 800264c:	460b      	mov	r3, r1
- 800264e:	70fb      	strb	r3, [r7, #3]
+ 8002640:	b480      	push	{r7}
+ 8002642:	b083      	sub	sp, #12
+ 8002644:	af00      	add	r7, sp, #0
+ 8002646:	6078      	str	r0, [r7, #4]
+ 8002648:	460b      	mov	r3, r1
+ 800264a:	70fb      	strb	r3, [r7, #3]
 		m_direction = in_direction;
- 8002650:	687b      	ldr	r3, [r7, #4]
- 8002652:	78fa      	ldrb	r2, [r7, #3]
- 8002654:	f883 2024 	strb.w	r2, [r3, #36]	; 0x24
+ 800264c:	78fb      	ldrb	r3, [r7, #3]
+ 800264e:	2b00      	cmp	r3, #0
+ 8002650:	bf14      	ite	ne
+ 8002652:	2301      	movne	r3, #1
+ 8002654:	2300      	moveq	r3, #0
+ 8002656:	b2da      	uxtb	r2, r3
+ 8002658:	687b      	ldr	r3, [r7, #4]
+ 800265a:	f883 2020 	strb.w	r2, [r3, #32]
 	}
- 8002658:	bf00      	nop
- 800265a:	370c      	adds	r7, #12
- 800265c:	46bd      	mov	sp, r7
- 800265e:	bc80      	pop	{r7}
- 8002660:	4770      	bx	lr
+ 800265e:	bf00      	nop
+ 8002660:	370c      	adds	r7, #12
+ 8002662:	46bd      	mov	sp, r7
+ 8002664:	bc80      	pop	{r7}
+ 8002666:	4770      	bx	lr
 
-08002662 <_ZN9StepMotor11startMotionEm>:
+08002668 <_ZN9StepMotor11startMotionEm>:
 	{
 		return m_direction;
 	}
 
 	void StepMotor::startMotion(uint32_t steps)
 	{
- 8002662:	b580      	push	{r7, lr}
- 8002664:	b082      	sub	sp, #8
- 8002666:	af00      	add	r7, sp, #0
- 8002668:	6078      	str	r0, [r7, #4]
- 800266a:	6039      	str	r1, [r7, #0]
-		if(m_inMotion == 0)
- 800266c:	687b      	ldr	r3, [r7, #4]
- 800266e:	f893 3044 	ldrb.w	r3, [r3, #68]	; 0x44
- 8002672:	2b00      	cmp	r3, #0
- 8002674:	d10c      	bne.n	8002690 <_ZN9StepMotor11startMotionEm+0x2e>
+ 8002668:	b580      	push	{r7, lr}
+ 800266a:	b082      	sub	sp, #8
+ 800266c:	af00      	add	r7, sp, #0
+ 800266e:	6078      	str	r0, [r7, #4]
+ 8002670:	6039      	str	r1, [r7, #0]
+		if(typeMotion == NO_MOTION)
+ 8002672:	687b      	ldr	r3, [r7, #4]
+ 8002674:	f893 3048 	ldrb.w	r3, [r3, #72]	; 0x48
+ 8002678:	2b00      	cmp	r3, #0
+ 800267a:	d10c      	bne.n	8002696 <_ZN9StepMotor11startMotionEm+0x2e>
 		{
-		m_FlagRazgona = true;
- 8002676:	687b      	ldr	r3, [r7, #4]
- 8002678:	2201      	movs	r2, #1
- 800267a:	f883 2050 	strb.w	r2, [r3, #80]	; 0x50
-		m_nStepsforRun = steps;
- 800267e:	687b      	ldr	r3, [r7, #4]
- 8002680:	683a      	ldr	r2, [r7, #0]
- 8002682:	629a      	str	r2, [r3, #40]	; 0x28
-		HAL_TIM_PWM_Start_IT(p_htim_PWM, TIM_CHANNEL_1);
+			typeMotion = ACCELERATION;
+ 800267c:	687b      	ldr	r3, [r7, #4]
+ 800267e:	2201      	movs	r2, #1
+ 8002680:	f883 2048 	strb.w	r2, [r3, #72]	; 0x48
+			m_nStepsForMotion = steps;
  8002684:	687b      	ldr	r3, [r7, #4]
- 8002686:	69db      	ldr	r3, [r3, #28]
- 8002688:	2100      	movs	r1, #0
- 800268a:	4618      	mov	r0, r3
- 800268c:	f7ff f91c 	bl	80018c8 <HAL_TIM_PWM_Start_IT>
+ 8002686:	683a      	ldr	r2, [r7, #0]
+ 8002688:	625a      	str	r2, [r3, #36]	; 0x24
+			HAL_TIM_PWM_Start_IT(p_htim_PWM, TIM_CHANNEL_1);
+ 800268a:	687b      	ldr	r3, [r7, #4]
+ 800268c:	699b      	ldr	r3, [r3, #24]
+ 800268e:	2100      	movs	r1, #0
+ 8002690:	4618      	mov	r0, r3
+ 8002692:	f7ff f919 	bl	80018c8 <HAL_TIM_PWM_Start_IT>
 		}
 	}
- 8002690:	bf00      	nop
- 8002692:	3708      	adds	r7, #8
- 8002694:	46bd      	mov	sp, r7
- 8002696:	bd80      	pop	{r7, pc}
+ 8002696:	bf00      	nop
+ 8002698:	3708      	adds	r7, #8
+ 800269a:	46bd      	mov	sp, r7
+ 800269c:	bd80      	pop	{r7, pc}
 
-08002698 <_ZN9StepMotor11setMaxSpeedEm>:
+0800269e <_ZN9StepMotor11setMaxSpeedEm>:
 	{
 		HAL_TIM_PWM_Stop_IT(p_htim_PWM, TIM_CHANNEL_1);
 	}
 
 	void StepMotor::setMaxSpeed(uint32_t maxSpeed)
 	{
- 8002698:	b480      	push	{r7}
- 800269a:	b083      	sub	sp, #12
- 800269c:	af00      	add	r7, sp, #0
- 800269e:	6078      	str	r0, [r7, #4]
- 80026a0:	6039      	str	r1, [r7, #0]
+ 800269e:	b480      	push	{r7}
+ 80026a0:	b083      	sub	sp, #12
+ 80026a2:	af00      	add	r7, sp, #0
+ 80026a4:	6078      	str	r0, [r7, #4]
+ 80026a6:	6039      	str	r1, [r7, #0]
 		m_MaxSpeed = maxSpeed;
- 80026a2:	687b      	ldr	r3, [r7, #4]
- 80026a4:	683a      	ldr	r2, [r7, #0]
- 80026a6:	62da      	str	r2, [r3, #44]	; 0x2c
+ 80026a8:	687b      	ldr	r3, [r7, #4]
+ 80026aa:	683a      	ldr	r2, [r7, #0]
+ 80026ac:	629a      	str	r2, [r3, #40]	; 0x28
 	}
- 80026a8:	bf00      	nop
- 80026aa:	370c      	adds	r7, #12
- 80026ac:	46bd      	mov	sp, r7
- 80026ae:	bc80      	pop	{r7}
- 80026b0:	4770      	bx	lr
+ 80026ae:	bf00      	nop
+ 80026b0:	370c      	adds	r7, #12
+ 80026b2:	46bd      	mov	sp, r7
+ 80026b4:	bc80      	pop	{r7}
+ 80026b6:	4770      	bx	lr
 
-080026b2 <_ZN9StepMotor11setMinSpeedEm>:
+080026b8 <_ZN9StepMotor11setMinSpeedEm>:
 		return m_MaxSpeed;
 	}
 
 
 	void StepMotor::setMinSpeed(uint32_t speed)
 	{
- 80026b2:	b480      	push	{r7}
- 80026b4:	b083      	sub	sp, #12
- 80026b6:	af00      	add	r7, sp, #0
- 80026b8:	6078      	str	r0, [r7, #4]
- 80026ba:	6039      	str	r1, [r7, #0]
+ 80026b8:	b480      	push	{r7}
+ 80026ba:	b083      	sub	sp, #12
+ 80026bc:	af00      	add	r7, sp, #0
+ 80026be:	6078      	str	r0, [r7, #4]
+ 80026c0:	6039      	str	r1, [r7, #0]
 		m_MinSpeed = speed;
- 80026bc:	687b      	ldr	r3, [r7, #4]
- 80026be:	683a      	ldr	r2, [r7, #0]
- 80026c0:	631a      	str	r2, [r3, #48]	; 0x30
+ 80026c2:	687b      	ldr	r3, [r7, #4]
+ 80026c4:	683a      	ldr	r2, [r7, #0]
+ 80026c6:	62da      	str	r2, [r3, #44]	; 0x2c
 	}
- 80026c2:	bf00      	nop
- 80026c4:	370c      	adds	r7, #12
- 80026c6:	46bd      	mov	sp, r7
- 80026c8:	bc80      	pop	{r7}
- 80026ca:	4770      	bx	lr
+ 80026c8:	bf00      	nop
+ 80026ca:	370c      	adds	r7, #12
+ 80026cc:	46bd      	mov	sp, r7
+ 80026ce:	bc80      	pop	{r7}
+ 80026d0:	4770      	bx	lr
 
-080026cc <_ZN9StepMotor12setRetentionEb>:
+080026d2 <_ZN9StepMotor12setRetentionEb>:
 	{
 		return m_MinSpeed;
 	}
 
 	void StepMotor::setRetention(bool Retention)
 	{
- 80026cc:	b580      	push	{r7, lr}
- 80026ce:	b082      	sub	sp, #8
- 80026d0:	af00      	add	r7, sp, #0
- 80026d2:	6078      	str	r0, [r7, #4]
- 80026d4:	460b      	mov	r3, r1
- 80026d6:	70fb      	strb	r3, [r7, #3]
+ 80026d2:	b580      	push	{r7, lr}
+ 80026d4:	b082      	sub	sp, #8
+ 80026d6:	af00      	add	r7, sp, #0
+ 80026d8:	6078      	str	r0, [r7, #4]
+ 80026da:	460b      	mov	r3, r1
+ 80026dc:	70fb      	strb	r3, [r7, #3]
 		m_Retention = Retention;
- 80026d8:	687b      	ldr	r3, [r7, #4]
- 80026da:	78fa      	ldrb	r2, [r7, #3]
- 80026dc:	f883 2034 	strb.w	r2, [r3, #52]	; 0x34
+ 80026de:	687b      	ldr	r3, [r7, #4]
+ 80026e0:	78fa      	ldrb	r2, [r7, #3]
+ 80026e2:	f883 2030 	strb.w	r2, [r3, #48]	; 0x30
 
 		if(m_Retention)
- 80026e0:	687b      	ldr	r3, [r7, #4]
- 80026e2:	f893 3034 	ldrb.w	r3, [r3, #52]	; 0x34
- 80026e6:	2b00      	cmp	r3, #0
- 80026e8:	d008      	beq.n	80026fc <_ZN9StepMotor12setRetentionEb+0x30>
+ 80026e6:	687b      	ldr	r3, [r7, #4]
+ 80026e8:	f893 3030 	ldrb.w	r3, [r3, #48]	; 0x30
+ 80026ec:	2b00      	cmp	r3, #0
+ 80026ee:	d008      	beq.n	8002702 <_ZN9StepMotor12setRetentionEb+0x30>
 			HAL_GPIO_WritePin(m_GPIOx_Enable, m_pin_enable, GPIO_PIN_RESET);
- 80026ea:	687b      	ldr	r3, [r7, #4]
- 80026ec:	6898      	ldr	r0, [r3, #8]
- 80026ee:	687b      	ldr	r3, [r7, #4]
- 80026f0:	8a9b      	ldrh	r3, [r3, #20]
- 80026f2:	2200      	movs	r2, #0
- 80026f4:	4619      	mov	r1, r3
- 80026f6:	f7fe fbd2 	bl	8000e9e <HAL_GPIO_WritePin>
+ 80026f0:	687b      	ldr	r3, [r7, #4]
+ 80026f2:	6858      	ldr	r0, [r3, #4]
+ 80026f4:	687b      	ldr	r3, [r7, #4]
+ 80026f6:	8a1b      	ldrh	r3, [r3, #16]
+ 80026f8:	2200      	movs	r2, #0
+ 80026fa:	4619      	mov	r1, r3
+ 80026fc:	f7fe fbcf 	bl	8000e9e <HAL_GPIO_WritePin>
 		else if(!m_Retention)
 			HAL_GPIO_WritePin(m_GPIOx_Enable, m_pin_enable, GPIO_PIN_SET);
 	}
- 80026fa:	e00f      	b.n	800271c <_ZN9StepMotor12setRetentionEb+0x50>
+ 8002700:	e00f      	b.n	8002722 <_ZN9StepMotor12setRetentionEb+0x50>
 		else if(!m_Retention)
- 80026fc:	687b      	ldr	r3, [r7, #4]
- 80026fe:	f893 3034 	ldrb.w	r3, [r3, #52]	; 0x34
- 8002702:	f083 0301 	eor.w	r3, r3, #1
- 8002706:	b2db      	uxtb	r3, r3
- 8002708:	2b00      	cmp	r3, #0
- 800270a:	d007      	beq.n	800271c <_ZN9StepMotor12setRetentionEb+0x50>
+ 8002702:	687b      	ldr	r3, [r7, #4]
+ 8002704:	f893 3030 	ldrb.w	r3, [r3, #48]	; 0x30
+ 8002708:	f083 0301 	eor.w	r3, r3, #1
+ 800270c:	b2db      	uxtb	r3, r3
+ 800270e:	2b00      	cmp	r3, #0
+ 8002710:	d007      	beq.n	8002722 <_ZN9StepMotor12setRetentionEb+0x50>
 			HAL_GPIO_WritePin(m_GPIOx_Enable, m_pin_enable, GPIO_PIN_SET);
- 800270c:	687b      	ldr	r3, [r7, #4]
- 800270e:	6898      	ldr	r0, [r3, #8]
- 8002710:	687b      	ldr	r3, [r7, #4]
- 8002712:	8a9b      	ldrh	r3, [r3, #20]
- 8002714:	2201      	movs	r2, #1
- 8002716:	4619      	mov	r1, r3
- 8002718:	f7fe fbc1 	bl	8000e9e <HAL_GPIO_WritePin>
+ 8002712:	687b      	ldr	r3, [r7, #4]
+ 8002714:	6858      	ldr	r0, [r3, #4]
+ 8002716:	687b      	ldr	r3, [r7, #4]
+ 8002718:	8a1b      	ldrh	r3, [r3, #16]
+ 800271a:	2201      	movs	r2, #1
+ 800271c:	4619      	mov	r1, r3
+ 800271e:	f7fe fbbe 	bl	8000e9e <HAL_GPIO_WritePin>
 	}
- 800271c:	bf00      	nop
- 800271e:	3708      	adds	r7, #8
- 8002720:	46bd      	mov	sp, r7
- 8002722:	bd80      	pop	{r7, pc}
+ 8002722:	bf00      	nop
+ 8002724:	3708      	adds	r7, #8
+ 8002726:	46bd      	mov	sp, r7
+ 8002728:	bd80      	pop	{r7, pc}
 
-08002724 <_ZN9StepMotor8setSpeedEm>:
+0800272a <_ZN9StepMotor8setSpeedEm>:
 
 	void StepMotor::setSpeed(uint32_t speed)
 	{
- 8002724:	b580      	push	{r7, lr}
- 8002726:	b084      	sub	sp, #16
- 8002728:	af00      	add	r7, sp, #0
- 800272a:	6078      	str	r0, [r7, #4]
- 800272c:	6039      	str	r1, [r7, #0]
+ 800272a:	b580      	push	{r7, lr}
+ 800272c:	b084      	sub	sp, #16
+ 800272e:	af00      	add	r7, sp, #0
+ 8002730:	6078      	str	r0, [r7, #4]
+ 8002732:	6039      	str	r1, [r7, #0]
 		if(m_speed <= m_MaxSpeed)
- 800272e:	687b      	ldr	r3, [r7, #4]
- 8002730:	6c9a      	ldr	r2, [r3, #72]	; 0x48
- 8002732:	687b      	ldr	r3, [r7, #4]
- 8002734:	6adb      	ldr	r3, [r3, #44]	; 0x2c
- 8002736:	429a      	cmp	r2, r3
- 8002738:	d81e      	bhi.n	8002778 <_ZN9StepMotor8setSpeedEm+0x54>
+ 8002734:	687b      	ldr	r3, [r7, #4]
+ 8002736:	6b9a      	ldr	r2, [r3, #56]	; 0x38
+ 8002738:	687b      	ldr	r3, [r7, #4]
+ 800273a:	6a9b      	ldr	r3, [r3, #40]	; 0x28
+ 800273c:	429a      	cmp	r2, r3
+ 800273e:	d81e      	bhi.n	800277e <_ZN9StepMotor8setSpeedEm+0x54>
 		{
 			m_speed = speed;
- 800273a:	687b      	ldr	r3, [r7, #4]
- 800273c:	683a      	ldr	r2, [r7, #0]
- 800273e:	649a      	str	r2, [r3, #72]	; 0x48
-			int arr = HAL_RCC_GetSysClockFreq() / (speed * p_htim_PWM->Instance->PSC);
- 8002740:	f7fe ff4a 	bl	80015d8 <HAL_RCC_GetSysClockFreq>
- 8002744:	4601      	mov	r1, r0
- 8002746:	687b      	ldr	r3, [r7, #4]
- 8002748:	69db      	ldr	r3, [r3, #28]
- 800274a:	681b      	ldr	r3, [r3, #0]
- 800274c:	6a9b      	ldr	r3, [r3, #40]	; 0x28
- 800274e:	683a      	ldr	r2, [r7, #0]
- 8002750:	fb02 f303 	mul.w	r3, r2, r3
- 8002754:	fbb1 f3f3 	udiv	r3, r1, r3
- 8002758:	60fb      	str	r3, [r7, #12]
+ 8002740:	687b      	ldr	r3, [r7, #4]
+ 8002742:	683a      	ldr	r2, [r7, #0]
+ 8002744:	639a      	str	r2, [r3, #56]	; 0x38
+			int arr = HAL_RCC_GetSysClockFreq() / (speed * p_htim_PWM->Instance->ARR);
+ 8002746:	f7fe ff47 	bl	80015d8 <HAL_RCC_GetSysClockFreq>
+ 800274a:	4601      	mov	r1, r0
+ 800274c:	687b      	ldr	r3, [r7, #4]
+ 800274e:	699b      	ldr	r3, [r3, #24]
+ 8002750:	681b      	ldr	r3, [r3, #0]
+ 8002752:	6adb      	ldr	r3, [r3, #44]	; 0x2c
+ 8002754:	683a      	ldr	r2, [r7, #0]
+ 8002756:	fb02 f303 	mul.w	r3, r2, r3
+ 800275a:	fbb1 f3f3 	udiv	r3, r1, r3
+ 800275e:	60fb      	str	r3, [r7, #12]
 			p_htim_PWM -> Instance -> ARR = arr - 1;
- 800275a:	68fb      	ldr	r3, [r7, #12]
- 800275c:	1e5a      	subs	r2, r3, #1
- 800275e:	687b      	ldr	r3, [r7, #4]
- 8002760:	69db      	ldr	r3, [r3, #28]
- 8002762:	681b      	ldr	r3, [r3, #0]
- 8002764:	62da      	str	r2, [r3, #44]	; 0x2c
+ 8002760:	68fb      	ldr	r3, [r7, #12]
+ 8002762:	1e5a      	subs	r2, r3, #1
+ 8002764:	687b      	ldr	r3, [r7, #4]
+ 8002766:	699b      	ldr	r3, [r3, #24]
+ 8002768:	681b      	ldr	r3, [r3, #0]
+ 800276a:	62da      	str	r2, [r3, #44]	; 0x2c
 			p_htim_PWM -> Instance -> CCR1 = arr / 2;
- 8002766:	68fb      	ldr	r3, [r7, #12]
- 8002768:	0fda      	lsrs	r2, r3, #31
- 800276a:	4413      	add	r3, r2
- 800276c:	105b      	asrs	r3, r3, #1
- 800276e:	461a      	mov	r2, r3
- 8002770:	687b      	ldr	r3, [r7, #4]
- 8002772:	69db      	ldr	r3, [r3, #28]
- 8002774:	681b      	ldr	r3, [r3, #0]
- 8002776:	635a      	str	r2, [r3, #52]	; 0x34
+ 800276c:	68fb      	ldr	r3, [r7, #12]
+ 800276e:	0fda      	lsrs	r2, r3, #31
+ 8002770:	4413      	add	r3, r2
+ 8002772:	105b      	asrs	r3, r3, #1
+ 8002774:	461a      	mov	r2, r3
+ 8002776:	687b      	ldr	r3, [r7, #4]
+ 8002778:	699b      	ldr	r3, [r3, #24]
+ 800277a:	681b      	ldr	r3, [r3, #0]
+ 800277c:	635a      	str	r2, [r3, #52]	; 0x34
 		}
 
 	}
- 8002778:	bf00      	nop
- 800277a:	3710      	adds	r7, #16
- 800277c:	46bd      	mov	sp, r7
- 800277e:	bd80      	pop	{r7, pc}
+ 800277e:	bf00      	nop
+ 8002780:	3710      	adds	r7, #16
+ 8002782:	46bd      	mov	sp, r7
+ 8002784:	bd80      	pop	{r7, pc}
 
-08002780 <_ZN9StepMotor19setAccelerationStepEmm>:
+08002786 <_ZN9StepMotor19setAccelerationStepEmm>:
 
-	void StepMotor::setAccelerationStep(uint32_t steps, uint32_t stepEndAccep)		// до какого шага увеличение частоты
+	void StepMotor::setAccelerationStep(uint32_t steps, uint32_t stepEndAcceleration)		// до какого шага увеличение частоты
 	{
- 8002780:	b480      	push	{r7}
- 8002782:	b085      	sub	sp, #20
- 8002784:	af00      	add	r7, sp, #0
- 8002786:	60f8      	str	r0, [r7, #12]
- 8002788:	60b9      	str	r1, [r7, #8]
- 800278a:	607a      	str	r2, [r7, #4]
-		m_AccelerationStep = (m_MaxSpeed - m_MinSpeed) / steps;
- 800278c:	68fb      	ldr	r3, [r7, #12]
- 800278e:	6ada      	ldr	r2, [r3, #44]	; 0x2c
- 8002790:	68fb      	ldr	r3, [r7, #12]
- 8002792:	6b1b      	ldr	r3, [r3, #48]	; 0x30
- 8002794:	1ad2      	subs	r2, r2, r3
+ 8002786:	b480      	push	{r7}
+ 8002788:	b085      	sub	sp, #20
+ 800278a:	af00      	add	r7, sp, #0
+ 800278c:	60f8      	str	r0, [r7, #12]
+ 800278e:	60b9      	str	r1, [r7, #8]
+ 8002790:	607a      	str	r2, [r7, #4]
+		m_AccelerationStep = m_MaxSpeed / steps;
+ 8002792:	68fb      	ldr	r3, [r7, #12]
+ 8002794:	6a9a      	ldr	r2, [r3, #40]	; 0x28
  8002796:	68bb      	ldr	r3, [r7, #8]
  8002798:	fbb2 f2f3 	udiv	r2, r2, r3
  800279c:	68fb      	ldr	r3, [r7, #12]
- 800279e:	641a      	str	r2, [r3, #64]	; 0x40
-		m_stepEndAccep = stepEndAccep;
+ 800279e:	635a      	str	r2, [r3, #52]	; 0x34
+		m_stepEndAcceleration = stepEndAcceleration;
  80027a0:	68fb      	ldr	r3, [r7, #12]
  80027a2:	687a      	ldr	r2, [r7, #4]
- 80027a4:	64da      	str	r2, [r3, #76]	; 0x4c
-		for(uint32_t i = 0; i < steps; i ++)
-		{
-			arrSpeed[i] = m_AccelerationStep * (i + 1);
-		}
-		*/
+ 80027a4:	63da      	str	r2, [r3, #60]	; 0x3c
 	}
  80027a6:	bf00      	nop
  80027a8:	3714      	adds	r7, #20
@@ -7156,393 +7156,466 @@ else
  80027ac:	bc80      	pop	{r7}
  80027ae:	4770      	bx	lr
 
-080027b0 <_ZN9StepMotor19accelerationServiceEi>:
+080027b0 <_ZN9StepMotor19accelerationServiceEm>:
 
-	void StepMotor::accelerationService(int i)
+	void StepMotor::accelerationService(uint32_t i)
 	{
  80027b0:	b580      	push	{r7, lr}
  80027b2:	b082      	sub	sp, #8
  80027b4:	af00      	add	r7, sp, #0
  80027b6:	6078      	str	r0, [r7, #4]
  80027b8:	6039      	str	r1, [r7, #0]
-		if (i == 0 || i > m_stepEndAccep)
+		if (i == 0 || i > m_stepEndAcceleration)
  80027ba:	683b      	ldr	r3, [r7, #0]
  80027bc:	2b00      	cmp	r3, #0
- 80027be:	d018      	beq.n	80027f2 <_ZN9StepMotor19accelerationServiceEi+0x42>
+ 80027be:	d023      	beq.n	8002808 <_ZN9StepMotor19accelerationServiceEm+0x58>
  80027c0:	687b      	ldr	r3, [r7, #4]
- 80027c2:	6cda      	ldr	r2, [r3, #76]	; 0x4c
- 80027c4:	683b      	ldr	r3, [r7, #0]
+ 80027c2:	6bdb      	ldr	r3, [r3, #60]	; 0x3c
+ 80027c4:	683a      	ldr	r2, [r7, #0]
  80027c6:	429a      	cmp	r2, r3
- 80027c8:	d313      	bcc.n	80027f2 <_ZN9StepMotor19accelerationServiceEi+0x42>
+ 80027c8:	d81e      	bhi.n	8002808 <_ZN9StepMotor19accelerationServiceEm+0x58>
 			return;
+		if (i == m_stepEndAcceleration)
+ 80027ca:	687b      	ldr	r3, [r7, #4]
+ 80027cc:	6bdb      	ldr	r3, [r3, #60]	; 0x3c
+ 80027ce:	683a      	ldr	r2, [r7, #0]
+ 80027d0:	429a      	cmp	r2, r3
+ 80027d2:	d105      	bne.n	80027e0 <_ZN9StepMotor19accelerationServiceEm+0x30>
+			setSpeed(m_MaxSpeed);
+ 80027d4:	687b      	ldr	r3, [r7, #4]
+ 80027d6:	6a9b      	ldr	r3, [r3, #40]	; 0x28
+ 80027d8:	4619      	mov	r1, r3
+ 80027da:	6878      	ldr	r0, [r7, #4]
+ 80027dc:	f7ff ffa5 	bl	800272a <_ZN9StepMotor8setSpeedEm>
 
 		if(i % m_AccelerationStep == 0)	//
- 80027ca:	683b      	ldr	r3, [r7, #0]
- 80027cc:	687a      	ldr	r2, [r7, #4]
- 80027ce:	6c12      	ldr	r2, [r2, #64]	; 0x40
- 80027d0:	fbb3 f1f2 	udiv	r1, r3, r2
- 80027d4:	fb01 f202 	mul.w	r2, r1, r2
- 80027d8:	1a9b      	subs	r3, r3, r2
- 80027da:	2b00      	cmp	r3, #0
- 80027dc:	d10a      	bne.n	80027f4 <_ZN9StepMotor19accelerationServiceEi+0x44>
+ 80027e0:	687b      	ldr	r3, [r7, #4]
+ 80027e2:	6b5a      	ldr	r2, [r3, #52]	; 0x34
+ 80027e4:	683b      	ldr	r3, [r7, #0]
+ 80027e6:	fbb3 f1f2 	udiv	r1, r3, r2
+ 80027ea:	fb01 f202 	mul.w	r2, r1, r2
+ 80027ee:	1a9b      	subs	r3, r3, r2
+ 80027f0:	2b00      	cmp	r3, #0
+ 80027f2:	d10a      	bne.n	800280a <_ZN9StepMotor19accelerationServiceEm+0x5a>
 		{
 			setSpeed(m_speed + m_AccelerationStep);
- 80027de:	687b      	ldr	r3, [r7, #4]
- 80027e0:	6c9a      	ldr	r2, [r3, #72]	; 0x48
- 80027e2:	687b      	ldr	r3, [r7, #4]
- 80027e4:	6c1b      	ldr	r3, [r3, #64]	; 0x40
- 80027e6:	4413      	add	r3, r2
- 80027e8:	4619      	mov	r1, r3
- 80027ea:	6878      	ldr	r0, [r7, #4]
- 80027ec:	f7ff ff9a 	bl	8002724 <_ZN9StepMotor8setSpeedEm>
- 80027f0:	e000      	b.n	80027f4 <_ZN9StepMotor19accelerationServiceEi+0x44>
+ 80027f4:	687b      	ldr	r3, [r7, #4]
+ 80027f6:	6b9a      	ldr	r2, [r3, #56]	; 0x38
+ 80027f8:	687b      	ldr	r3, [r7, #4]
+ 80027fa:	6b5b      	ldr	r3, [r3, #52]	; 0x34
+ 80027fc:	4413      	add	r3, r2
+ 80027fe:	4619      	mov	r1, r3
+ 8002800:	6878      	ldr	r0, [r7, #4]
+ 8002802:	f7ff ff92 	bl	800272a <_ZN9StepMotor8setSpeedEm>
+ 8002806:	e000      	b.n	800280a <_ZN9StepMotor19accelerationServiceEm+0x5a>
 			return;
- 80027f2:	bf00      	nop
-
+ 8002808:	bf00      	nop
 		}
 
 	}
- 80027f4:	3708      	adds	r7, #8
- 80027f6:	46bd      	mov	sp, r7
- 80027f8:	bd80      	pop	{r7, pc}
+ 800280a:	3708      	adds	r7, #8
+ 800280c:	46bd      	mov	sp, r7
+ 800280e:	bd80      	pop	{r7, pc}
 
-080027fa <_Znwj>:
- 80027fa:	2801      	cmp	r0, #1
- 80027fc:	bf38      	it	cc
- 80027fe:	2001      	movcc	r0, #1
- 8002800:	b510      	push	{r4, lr}
- 8002802:	4604      	mov	r4, r0
- 8002804:	4620      	mov	r0, r4
- 8002806:	f000 f819 	bl	800283c <malloc>
- 800280a:	b100      	cbz	r0, 800280e <_Znwj+0x14>
- 800280c:	bd10      	pop	{r4, pc}
- 800280e:	f000 f805 	bl	800281c <_ZSt15get_new_handlerv>
- 8002812:	b908      	cbnz	r0, 8002818 <_Znwj+0x1e>
- 8002814:	f000 f80a 	bl	800282c <abort>
- 8002818:	4780      	blx	r0
- 800281a:	e7f3      	b.n	8002804 <_Znwj+0xa>
+08002810 <_ZN9StepMotor12brakeServiceEm>:
+		m_brakeSteps = m_speed / stepsBrake;
+		m_stepsStartBrake = m_nStepsForMotion - stepsForEndBraking;
+	}
 
-0800281c <_ZSt15get_new_handlerv>:
- 800281c:	4b02      	ldr	r3, [pc, #8]	; (8002828 <_ZSt15get_new_handlerv+0xc>)
- 800281e:	6818      	ldr	r0, [r3, #0]
- 8002820:	f3bf 8f5b 	dmb	ish
- 8002824:	4770      	bx	lr
- 8002826:	bf00      	nop
- 8002828:	200000cc 	.word	0x200000cc
+	void StepMotor::brakeService(uint32_t i)
+	{
+ 8002810:	b580      	push	{r7, lr}
+ 8002812:	b082      	sub	sp, #8
+ 8002814:	af00      	add	r7, sp, #0
+ 8002816:	6078      	str	r0, [r7, #4]
+ 8002818:	6039      	str	r1, [r7, #0]
+		if (i == 0 || i > m_stepsStartBrake)
+ 800281a:	683b      	ldr	r3, [r7, #0]
+ 800281c:	2b00      	cmp	r3, #0
+ 800281e:	d021      	beq.n	8002864 <_ZN9StepMotor12brakeServiceEm+0x54>
+ 8002820:	687b      	ldr	r3, [r7, #4]
+ 8002822:	6c5b      	ldr	r3, [r3, #68]	; 0x44
+ 8002824:	683a      	ldr	r2, [r7, #0]
+ 8002826:	429a      	cmp	r2, r3
+ 8002828:	d81c      	bhi.n	8002864 <_ZN9StepMotor12brakeServiceEm+0x54>
+			return;
+		if (i == m_stepsStartBrake)
+ 800282a:	687b      	ldr	r3, [r7, #4]
+ 800282c:	6c5b      	ldr	r3, [r3, #68]	; 0x44
+ 800282e:	683a      	ldr	r2, [r7, #0]
+ 8002830:	429a      	cmp	r2, r3
+ 8002832:	d103      	bne.n	800283c <_ZN9StepMotor12brakeServiceEm+0x2c>
+			setSpeed(0);
+ 8002834:	2100      	movs	r1, #0
+ 8002836:	6878      	ldr	r0, [r7, #4]
+ 8002838:	f7ff ff77 	bl	800272a <_ZN9StepMotor8setSpeedEm>
 
-0800282c <abort>:
- 800282c:	2006      	movs	r0, #6
- 800282e:	b508      	push	{r3, lr}
- 8002830:	f000 f8e8 	bl	8002a04 <raise>
- 8002834:	2001      	movs	r0, #1
- 8002836:	f7fd ffba 	bl	80007ae <_exit>
+		if(i % m_brakeSteps == 0)	//
+ 800283c:	687b      	ldr	r3, [r7, #4]
+ 800283e:	6c1a      	ldr	r2, [r3, #64]	; 0x40
+ 8002840:	683b      	ldr	r3, [r7, #0]
+ 8002842:	fbb3 f1f2 	udiv	r1, r3, r2
+ 8002846:	fb01 f202 	mul.w	r2, r1, r2
+ 800284a:	1a9b      	subs	r3, r3, r2
+ 800284c:	2b00      	cmp	r3, #0
+ 800284e:	d10a      	bne.n	8002866 <_ZN9StepMotor12brakeServiceEm+0x56>
+		{
+			setSpeed(m_speed - m_brakeSteps);
+ 8002850:	687b      	ldr	r3, [r7, #4]
+ 8002852:	6b9a      	ldr	r2, [r3, #56]	; 0x38
+ 8002854:	687b      	ldr	r3, [r7, #4]
+ 8002856:	6c1b      	ldr	r3, [r3, #64]	; 0x40
+ 8002858:	1ad3      	subs	r3, r2, r3
+ 800285a:	4619      	mov	r1, r3
+ 800285c:	6878      	ldr	r0, [r7, #4]
+ 800285e:	f7ff ff64 	bl	800272a <_ZN9StepMotor8setSpeedEm>
+ 8002862:	e000      	b.n	8002866 <_ZN9StepMotor12brakeServiceEm+0x56>
+			return;
+ 8002864:	bf00      	nop
+		}
+	}
+ 8002866:	3708      	adds	r7, #8
+ 8002868:	46bd      	mov	sp, r7
+ 800286a:	bd80      	pop	{r7, pc}
+
+0800286c <_Znwj>:
+ 800286c:	2801      	cmp	r0, #1
+ 800286e:	bf38      	it	cc
+ 8002870:	2001      	movcc	r0, #1
+ 8002872:	b510      	push	{r4, lr}
+ 8002874:	4604      	mov	r4, r0
+ 8002876:	4620      	mov	r0, r4
+ 8002878:	f000 f81a 	bl	80028b0 <malloc>
+ 800287c:	b100      	cbz	r0, 8002880 <_Znwj+0x14>
+ 800287e:	bd10      	pop	{r4, pc}
+ 8002880:	f000 f806 	bl	8002890 <_ZSt15get_new_handlerv>
+ 8002884:	b908      	cbnz	r0, 800288a <_Znwj+0x1e>
+ 8002886:	f000 f80b 	bl	80028a0 <abort>
+ 800288a:	4780      	blx	r0
+ 800288c:	e7f3      	b.n	8002876 <_Znwj+0xa>
 	...
 
-0800283c <malloc>:
- 800283c:	4b02      	ldr	r3, [pc, #8]	; (8002848 <malloc+0xc>)
- 800283e:	4601      	mov	r1, r0
- 8002840:	6818      	ldr	r0, [r3, #0]
- 8002842:	f000 b823 	b.w	800288c <_malloc_r>
- 8002846:	bf00      	nop
- 8002848:	20000058 	.word	0x20000058
+08002890 <_ZSt15get_new_handlerv>:
+ 8002890:	4b02      	ldr	r3, [pc, #8]	; (800289c <_ZSt15get_new_handlerv+0xc>)
+ 8002892:	6818      	ldr	r0, [r3, #0]
+ 8002894:	f3bf 8f5b 	dmb	ish
+ 8002898:	4770      	bx	lr
+ 800289a:	bf00      	nop
+ 800289c:	200000cc 	.word	0x200000cc
 
-0800284c <sbrk_aligned>:
- 800284c:	b570      	push	{r4, r5, r6, lr}
- 800284e:	4e0e      	ldr	r6, [pc, #56]	; (8002888 <sbrk_aligned+0x3c>)
- 8002850:	460c      	mov	r4, r1
- 8002852:	6831      	ldr	r1, [r6, #0]
- 8002854:	4605      	mov	r5, r0
- 8002856:	b911      	cbnz	r1, 800285e <sbrk_aligned+0x12>
- 8002858:	f000 f8f0 	bl	8002a3c <_sbrk_r>
- 800285c:	6030      	str	r0, [r6, #0]
- 800285e:	4621      	mov	r1, r4
- 8002860:	4628      	mov	r0, r5
- 8002862:	f000 f8eb 	bl	8002a3c <_sbrk_r>
- 8002866:	1c43      	adds	r3, r0, #1
- 8002868:	d00a      	beq.n	8002880 <sbrk_aligned+0x34>
- 800286a:	1cc4      	adds	r4, r0, #3
- 800286c:	f024 0403 	bic.w	r4, r4, #3
- 8002870:	42a0      	cmp	r0, r4
- 8002872:	d007      	beq.n	8002884 <sbrk_aligned+0x38>
- 8002874:	1a21      	subs	r1, r4, r0
- 8002876:	4628      	mov	r0, r5
- 8002878:	f000 f8e0 	bl	8002a3c <_sbrk_r>
- 800287c:	3001      	adds	r0, #1
- 800287e:	d101      	bne.n	8002884 <sbrk_aligned+0x38>
- 8002880:	f04f 34ff 	mov.w	r4, #4294967295
- 8002884:	4620      	mov	r0, r4
- 8002886:	bd70      	pop	{r4, r5, r6, pc}
- 8002888:	200000d4 	.word	0x200000d4
+080028a0 <abort>:
+ 80028a0:	2006      	movs	r0, #6
+ 80028a2:	b508      	push	{r3, lr}
+ 80028a4:	f000 f8e8 	bl	8002a78 <raise>
+ 80028a8:	2001      	movs	r0, #1
+ 80028aa:	f7fd ff80 	bl	80007ae <_exit>
+	...
 
-0800288c <_malloc_r>:
- 800288c:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
- 8002890:	1ccd      	adds	r5, r1, #3
- 8002892:	f025 0503 	bic.w	r5, r5, #3
- 8002896:	3508      	adds	r5, #8
- 8002898:	2d0c      	cmp	r5, #12
- 800289a:	bf38      	it	cc
- 800289c:	250c      	movcc	r5, #12
- 800289e:	2d00      	cmp	r5, #0
- 80028a0:	4607      	mov	r7, r0
- 80028a2:	db01      	blt.n	80028a8 <_malloc_r+0x1c>
- 80028a4:	42a9      	cmp	r1, r5
- 80028a6:	d905      	bls.n	80028b4 <_malloc_r+0x28>
- 80028a8:	230c      	movs	r3, #12
- 80028aa:	2600      	movs	r6, #0
- 80028ac:	603b      	str	r3, [r7, #0]
- 80028ae:	4630      	mov	r0, r6
- 80028b0:	e8bd 83f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
- 80028b4:	f8df 80d0 	ldr.w	r8, [pc, #208]	; 8002988 <_malloc_r+0xfc>
- 80028b8:	f000 f868 	bl	800298c <__malloc_lock>
- 80028bc:	f8d8 3000 	ldr.w	r3, [r8]
- 80028c0:	461c      	mov	r4, r3
- 80028c2:	bb5c      	cbnz	r4, 800291c <_malloc_r+0x90>
- 80028c4:	4629      	mov	r1, r5
- 80028c6:	4638      	mov	r0, r7
- 80028c8:	f7ff ffc0 	bl	800284c <sbrk_aligned>
- 80028cc:	1c43      	adds	r3, r0, #1
- 80028ce:	4604      	mov	r4, r0
- 80028d0:	d155      	bne.n	800297e <_malloc_r+0xf2>
- 80028d2:	f8d8 4000 	ldr.w	r4, [r8]
- 80028d6:	4626      	mov	r6, r4
- 80028d8:	2e00      	cmp	r6, #0
- 80028da:	d145      	bne.n	8002968 <_malloc_r+0xdc>
- 80028dc:	2c00      	cmp	r4, #0
- 80028de:	d048      	beq.n	8002972 <_malloc_r+0xe6>
- 80028e0:	6823      	ldr	r3, [r4, #0]
- 80028e2:	4631      	mov	r1, r6
- 80028e4:	4638      	mov	r0, r7
- 80028e6:	eb04 0903 	add.w	r9, r4, r3
- 80028ea:	f000 f8a7 	bl	8002a3c <_sbrk_r>
- 80028ee:	4581      	cmp	r9, r0
- 80028f0:	d13f      	bne.n	8002972 <_malloc_r+0xe6>
- 80028f2:	6821      	ldr	r1, [r4, #0]
- 80028f4:	4638      	mov	r0, r7
- 80028f6:	1a6d      	subs	r5, r5, r1
- 80028f8:	4629      	mov	r1, r5
- 80028fa:	f7ff ffa7 	bl	800284c <sbrk_aligned>
- 80028fe:	3001      	adds	r0, #1
- 8002900:	d037      	beq.n	8002972 <_malloc_r+0xe6>
- 8002902:	6823      	ldr	r3, [r4, #0]
- 8002904:	442b      	add	r3, r5
- 8002906:	6023      	str	r3, [r4, #0]
- 8002908:	f8d8 3000 	ldr.w	r3, [r8]
- 800290c:	2b00      	cmp	r3, #0
- 800290e:	d038      	beq.n	8002982 <_malloc_r+0xf6>
- 8002910:	685a      	ldr	r2, [r3, #4]
- 8002912:	42a2      	cmp	r2, r4
- 8002914:	d12b      	bne.n	800296e <_malloc_r+0xe2>
- 8002916:	2200      	movs	r2, #0
- 8002918:	605a      	str	r2, [r3, #4]
- 800291a:	e00f      	b.n	800293c <_malloc_r+0xb0>
- 800291c:	6822      	ldr	r2, [r4, #0]
- 800291e:	1b52      	subs	r2, r2, r5
- 8002920:	d41f      	bmi.n	8002962 <_malloc_r+0xd6>
- 8002922:	2a0b      	cmp	r2, #11
- 8002924:	d917      	bls.n	8002956 <_malloc_r+0xca>
- 8002926:	1961      	adds	r1, r4, r5
- 8002928:	42a3      	cmp	r3, r4
- 800292a:	6025      	str	r5, [r4, #0]
- 800292c:	bf18      	it	ne
- 800292e:	6059      	strne	r1, [r3, #4]
- 8002930:	6863      	ldr	r3, [r4, #4]
- 8002932:	bf08      	it	eq
- 8002934:	f8c8 1000 	streq.w	r1, [r8]
- 8002938:	5162      	str	r2, [r4, r5]
- 800293a:	604b      	str	r3, [r1, #4]
- 800293c:	4638      	mov	r0, r7
- 800293e:	f104 060b 	add.w	r6, r4, #11
- 8002942:	f000 f829 	bl	8002998 <__malloc_unlock>
- 8002946:	f026 0607 	bic.w	r6, r6, #7
- 800294a:	1d23      	adds	r3, r4, #4
- 800294c:	1af2      	subs	r2, r6, r3
- 800294e:	d0ae      	beq.n	80028ae <_malloc_r+0x22>
- 8002950:	1b9b      	subs	r3, r3, r6
- 8002952:	50a3      	str	r3, [r4, r2]
- 8002954:	e7ab      	b.n	80028ae <_malloc_r+0x22>
- 8002956:	42a3      	cmp	r3, r4
- 8002958:	6862      	ldr	r2, [r4, #4]
- 800295a:	d1dd      	bne.n	8002918 <_malloc_r+0x8c>
- 800295c:	f8c8 2000 	str.w	r2, [r8]
- 8002960:	e7ec      	b.n	800293c <_malloc_r+0xb0>
- 8002962:	4623      	mov	r3, r4
- 8002964:	6864      	ldr	r4, [r4, #4]
- 8002966:	e7ac      	b.n	80028c2 <_malloc_r+0x36>
- 8002968:	4634      	mov	r4, r6
- 800296a:	6876      	ldr	r6, [r6, #4]
- 800296c:	e7b4      	b.n	80028d8 <_malloc_r+0x4c>
- 800296e:	4613      	mov	r3, r2
- 8002970:	e7cc      	b.n	800290c <_malloc_r+0x80>
- 8002972:	230c      	movs	r3, #12
- 8002974:	4638      	mov	r0, r7
- 8002976:	603b      	str	r3, [r7, #0]
- 8002978:	f000 f80e 	bl	8002998 <__malloc_unlock>
- 800297c:	e797      	b.n	80028ae <_malloc_r+0x22>
- 800297e:	6025      	str	r5, [r4, #0]
- 8002980:	e7dc      	b.n	800293c <_malloc_r+0xb0>
- 8002982:	605b      	str	r3, [r3, #4]
- 8002984:	deff      	udf	#255	; 0xff
- 8002986:	bf00      	nop
- 8002988:	200000d0 	.word	0x200000d0
+080028b0 <malloc>:
+ 80028b0:	4b02      	ldr	r3, [pc, #8]	; (80028bc <malloc+0xc>)
+ 80028b2:	4601      	mov	r1, r0
+ 80028b4:	6818      	ldr	r0, [r3, #0]
+ 80028b6:	f000 b823 	b.w	8002900 <_malloc_r>
+ 80028ba:	bf00      	nop
+ 80028bc:	20000058 	.word	0x20000058
 
-0800298c <__malloc_lock>:
- 800298c:	4801      	ldr	r0, [pc, #4]	; (8002994 <__malloc_lock+0x8>)
- 800298e:	f000 b88f 	b.w	8002ab0 <__retarget_lock_acquire_recursive>
- 8002992:	bf00      	nop
- 8002994:	20000214 	.word	0x20000214
+080028c0 <sbrk_aligned>:
+ 80028c0:	b570      	push	{r4, r5, r6, lr}
+ 80028c2:	4e0e      	ldr	r6, [pc, #56]	; (80028fc <sbrk_aligned+0x3c>)
+ 80028c4:	460c      	mov	r4, r1
+ 80028c6:	6831      	ldr	r1, [r6, #0]
+ 80028c8:	4605      	mov	r5, r0
+ 80028ca:	b911      	cbnz	r1, 80028d2 <sbrk_aligned+0x12>
+ 80028cc:	f000 f8f0 	bl	8002ab0 <_sbrk_r>
+ 80028d0:	6030      	str	r0, [r6, #0]
+ 80028d2:	4621      	mov	r1, r4
+ 80028d4:	4628      	mov	r0, r5
+ 80028d6:	f000 f8eb 	bl	8002ab0 <_sbrk_r>
+ 80028da:	1c43      	adds	r3, r0, #1
+ 80028dc:	d00a      	beq.n	80028f4 <sbrk_aligned+0x34>
+ 80028de:	1cc4      	adds	r4, r0, #3
+ 80028e0:	f024 0403 	bic.w	r4, r4, #3
+ 80028e4:	42a0      	cmp	r0, r4
+ 80028e6:	d007      	beq.n	80028f8 <sbrk_aligned+0x38>
+ 80028e8:	1a21      	subs	r1, r4, r0
+ 80028ea:	4628      	mov	r0, r5
+ 80028ec:	f000 f8e0 	bl	8002ab0 <_sbrk_r>
+ 80028f0:	3001      	adds	r0, #1
+ 80028f2:	d101      	bne.n	80028f8 <sbrk_aligned+0x38>
+ 80028f4:	f04f 34ff 	mov.w	r4, #4294967295
+ 80028f8:	4620      	mov	r0, r4
+ 80028fa:	bd70      	pop	{r4, r5, r6, pc}
+ 80028fc:	200000d4 	.word	0x200000d4
 
-08002998 <__malloc_unlock>:
- 8002998:	4801      	ldr	r0, [pc, #4]	; (80029a0 <__malloc_unlock+0x8>)
- 800299a:	f000 b88a 	b.w	8002ab2 <__retarget_lock_release_recursive>
- 800299e:	bf00      	nop
- 80029a0:	20000214 	.word	0x20000214
+08002900 <_malloc_r>:
+ 8002900:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
+ 8002904:	1ccd      	adds	r5, r1, #3
+ 8002906:	f025 0503 	bic.w	r5, r5, #3
+ 800290a:	3508      	adds	r5, #8
+ 800290c:	2d0c      	cmp	r5, #12
+ 800290e:	bf38      	it	cc
+ 8002910:	250c      	movcc	r5, #12
+ 8002912:	2d00      	cmp	r5, #0
+ 8002914:	4607      	mov	r7, r0
+ 8002916:	db01      	blt.n	800291c <_malloc_r+0x1c>
+ 8002918:	42a9      	cmp	r1, r5
+ 800291a:	d905      	bls.n	8002928 <_malloc_r+0x28>
+ 800291c:	230c      	movs	r3, #12
+ 800291e:	2600      	movs	r6, #0
+ 8002920:	603b      	str	r3, [r7, #0]
+ 8002922:	4630      	mov	r0, r6
+ 8002924:	e8bd 83f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
+ 8002928:	f8df 80d0 	ldr.w	r8, [pc, #208]	; 80029fc <_malloc_r+0xfc>
+ 800292c:	f000 f868 	bl	8002a00 <__malloc_lock>
+ 8002930:	f8d8 3000 	ldr.w	r3, [r8]
+ 8002934:	461c      	mov	r4, r3
+ 8002936:	bb5c      	cbnz	r4, 8002990 <_malloc_r+0x90>
+ 8002938:	4629      	mov	r1, r5
+ 800293a:	4638      	mov	r0, r7
+ 800293c:	f7ff ffc0 	bl	80028c0 <sbrk_aligned>
+ 8002940:	1c43      	adds	r3, r0, #1
+ 8002942:	4604      	mov	r4, r0
+ 8002944:	d155      	bne.n	80029f2 <_malloc_r+0xf2>
+ 8002946:	f8d8 4000 	ldr.w	r4, [r8]
+ 800294a:	4626      	mov	r6, r4
+ 800294c:	2e00      	cmp	r6, #0
+ 800294e:	d145      	bne.n	80029dc <_malloc_r+0xdc>
+ 8002950:	2c00      	cmp	r4, #0
+ 8002952:	d048      	beq.n	80029e6 <_malloc_r+0xe6>
+ 8002954:	6823      	ldr	r3, [r4, #0]
+ 8002956:	4631      	mov	r1, r6
+ 8002958:	4638      	mov	r0, r7
+ 800295a:	eb04 0903 	add.w	r9, r4, r3
+ 800295e:	f000 f8a7 	bl	8002ab0 <_sbrk_r>
+ 8002962:	4581      	cmp	r9, r0
+ 8002964:	d13f      	bne.n	80029e6 <_malloc_r+0xe6>
+ 8002966:	6821      	ldr	r1, [r4, #0]
+ 8002968:	4638      	mov	r0, r7
+ 800296a:	1a6d      	subs	r5, r5, r1
+ 800296c:	4629      	mov	r1, r5
+ 800296e:	f7ff ffa7 	bl	80028c0 <sbrk_aligned>
+ 8002972:	3001      	adds	r0, #1
+ 8002974:	d037      	beq.n	80029e6 <_malloc_r+0xe6>
+ 8002976:	6823      	ldr	r3, [r4, #0]
+ 8002978:	442b      	add	r3, r5
+ 800297a:	6023      	str	r3, [r4, #0]
+ 800297c:	f8d8 3000 	ldr.w	r3, [r8]
+ 8002980:	2b00      	cmp	r3, #0
+ 8002982:	d038      	beq.n	80029f6 <_malloc_r+0xf6>
+ 8002984:	685a      	ldr	r2, [r3, #4]
+ 8002986:	42a2      	cmp	r2, r4
+ 8002988:	d12b      	bne.n	80029e2 <_malloc_r+0xe2>
+ 800298a:	2200      	movs	r2, #0
+ 800298c:	605a      	str	r2, [r3, #4]
+ 800298e:	e00f      	b.n	80029b0 <_malloc_r+0xb0>
+ 8002990:	6822      	ldr	r2, [r4, #0]
+ 8002992:	1b52      	subs	r2, r2, r5
+ 8002994:	d41f      	bmi.n	80029d6 <_malloc_r+0xd6>
+ 8002996:	2a0b      	cmp	r2, #11
+ 8002998:	d917      	bls.n	80029ca <_malloc_r+0xca>
+ 800299a:	1961      	adds	r1, r4, r5
+ 800299c:	42a3      	cmp	r3, r4
+ 800299e:	6025      	str	r5, [r4, #0]
+ 80029a0:	bf18      	it	ne
+ 80029a2:	6059      	strne	r1, [r3, #4]
+ 80029a4:	6863      	ldr	r3, [r4, #4]
+ 80029a6:	bf08      	it	eq
+ 80029a8:	f8c8 1000 	streq.w	r1, [r8]
+ 80029ac:	5162      	str	r2, [r4, r5]
+ 80029ae:	604b      	str	r3, [r1, #4]
+ 80029b0:	4638      	mov	r0, r7
+ 80029b2:	f104 060b 	add.w	r6, r4, #11
+ 80029b6:	f000 f829 	bl	8002a0c <__malloc_unlock>
+ 80029ba:	f026 0607 	bic.w	r6, r6, #7
+ 80029be:	1d23      	adds	r3, r4, #4
+ 80029c0:	1af2      	subs	r2, r6, r3
+ 80029c2:	d0ae      	beq.n	8002922 <_malloc_r+0x22>
+ 80029c4:	1b9b      	subs	r3, r3, r6
+ 80029c6:	50a3      	str	r3, [r4, r2]
+ 80029c8:	e7ab      	b.n	8002922 <_malloc_r+0x22>
+ 80029ca:	42a3      	cmp	r3, r4
+ 80029cc:	6862      	ldr	r2, [r4, #4]
+ 80029ce:	d1dd      	bne.n	800298c <_malloc_r+0x8c>
+ 80029d0:	f8c8 2000 	str.w	r2, [r8]
+ 80029d4:	e7ec      	b.n	80029b0 <_malloc_r+0xb0>
+ 80029d6:	4623      	mov	r3, r4
+ 80029d8:	6864      	ldr	r4, [r4, #4]
+ 80029da:	e7ac      	b.n	8002936 <_malloc_r+0x36>
+ 80029dc:	4634      	mov	r4, r6
+ 80029de:	6876      	ldr	r6, [r6, #4]
+ 80029e0:	e7b4      	b.n	800294c <_malloc_r+0x4c>
+ 80029e2:	4613      	mov	r3, r2
+ 80029e4:	e7cc      	b.n	8002980 <_malloc_r+0x80>
+ 80029e6:	230c      	movs	r3, #12
+ 80029e8:	4638      	mov	r0, r7
+ 80029ea:	603b      	str	r3, [r7, #0]
+ 80029ec:	f000 f80e 	bl	8002a0c <__malloc_unlock>
+ 80029f0:	e797      	b.n	8002922 <_malloc_r+0x22>
+ 80029f2:	6025      	str	r5, [r4, #0]
+ 80029f4:	e7dc      	b.n	80029b0 <_malloc_r+0xb0>
+ 80029f6:	605b      	str	r3, [r3, #4]
+ 80029f8:	deff      	udf	#255	; 0xff
+ 80029fa:	bf00      	nop
+ 80029fc:	200000d0 	.word	0x200000d0
 
-080029a4 <memset>:
- 80029a4:	4603      	mov	r3, r0
- 80029a6:	4402      	add	r2, r0
- 80029a8:	4293      	cmp	r3, r2
- 80029aa:	d100      	bne.n	80029ae <memset+0xa>
- 80029ac:	4770      	bx	lr
- 80029ae:	f803 1b01 	strb.w	r1, [r3], #1
- 80029b2:	e7f9      	b.n	80029a8 <memset+0x4>
+08002a00 <__malloc_lock>:
+ 8002a00:	4801      	ldr	r0, [pc, #4]	; (8002a08 <__malloc_lock+0x8>)
+ 8002a02:	f000 b88f 	b.w	8002b24 <__retarget_lock_acquire_recursive>
+ 8002a06:	bf00      	nop
+ 8002a08:	20000214 	.word	0x20000214
 
-080029b4 <_raise_r>:
- 80029b4:	291f      	cmp	r1, #31
- 80029b6:	b538      	push	{r3, r4, r5, lr}
- 80029b8:	4604      	mov	r4, r0
- 80029ba:	460d      	mov	r5, r1
- 80029bc:	d904      	bls.n	80029c8 <_raise_r+0x14>
- 80029be:	2316      	movs	r3, #22
- 80029c0:	6003      	str	r3, [r0, #0]
- 80029c2:	f04f 30ff 	mov.w	r0, #4294967295
- 80029c6:	bd38      	pop	{r3, r4, r5, pc}
- 80029c8:	6bc2      	ldr	r2, [r0, #60]	; 0x3c
- 80029ca:	b112      	cbz	r2, 80029d2 <_raise_r+0x1e>
- 80029cc:	f852 3021 	ldr.w	r3, [r2, r1, lsl #2]
- 80029d0:	b94b      	cbnz	r3, 80029e6 <_raise_r+0x32>
- 80029d2:	4620      	mov	r0, r4
- 80029d4:	f000 f830 	bl	8002a38 <_getpid_r>
- 80029d8:	462a      	mov	r2, r5
- 80029da:	4601      	mov	r1, r0
- 80029dc:	4620      	mov	r0, r4
- 80029de:	e8bd 4038 	ldmia.w	sp!, {r3, r4, r5, lr}
- 80029e2:	f000 b817 	b.w	8002a14 <_kill_r>
- 80029e6:	2b01      	cmp	r3, #1
- 80029e8:	d00a      	beq.n	8002a00 <_raise_r+0x4c>
- 80029ea:	1c59      	adds	r1, r3, #1
- 80029ec:	d103      	bne.n	80029f6 <_raise_r+0x42>
- 80029ee:	2316      	movs	r3, #22
- 80029f0:	6003      	str	r3, [r0, #0]
- 80029f2:	2001      	movs	r0, #1
- 80029f4:	e7e7      	b.n	80029c6 <_raise_r+0x12>
- 80029f6:	2400      	movs	r4, #0
- 80029f8:	4628      	mov	r0, r5
- 80029fa:	f842 4025 	str.w	r4, [r2, r5, lsl #2]
- 80029fe:	4798      	blx	r3
- 8002a00:	2000      	movs	r0, #0
- 8002a02:	e7e0      	b.n	80029c6 <_raise_r+0x12>
+08002a0c <__malloc_unlock>:
+ 8002a0c:	4801      	ldr	r0, [pc, #4]	; (8002a14 <__malloc_unlock+0x8>)
+ 8002a0e:	f000 b88a 	b.w	8002b26 <__retarget_lock_release_recursive>
+ 8002a12:	bf00      	nop
+ 8002a14:	20000214 	.word	0x20000214
 
-08002a04 <raise>:
- 8002a04:	4b02      	ldr	r3, [pc, #8]	; (8002a10 <raise+0xc>)
- 8002a06:	4601      	mov	r1, r0
- 8002a08:	6818      	ldr	r0, [r3, #0]
- 8002a0a:	f7ff bfd3 	b.w	80029b4 <_raise_r>
- 8002a0e:	bf00      	nop
- 8002a10:	20000058 	.word	0x20000058
+08002a18 <memset>:
+ 8002a18:	4603      	mov	r3, r0
+ 8002a1a:	4402      	add	r2, r0
+ 8002a1c:	4293      	cmp	r3, r2
+ 8002a1e:	d100      	bne.n	8002a22 <memset+0xa>
+ 8002a20:	4770      	bx	lr
+ 8002a22:	f803 1b01 	strb.w	r1, [r3], #1
+ 8002a26:	e7f9      	b.n	8002a1c <memset+0x4>
 
-08002a14 <_kill_r>:
- 8002a14:	b538      	push	{r3, r4, r5, lr}
- 8002a16:	2300      	movs	r3, #0
- 8002a18:	4d06      	ldr	r5, [pc, #24]	; (8002a34 <_kill_r+0x20>)
- 8002a1a:	4604      	mov	r4, r0
- 8002a1c:	4608      	mov	r0, r1
- 8002a1e:	4611      	mov	r1, r2
- 8002a20:	602b      	str	r3, [r5, #0]
- 8002a22:	f7fd feb4 	bl	800078e <_kill>
- 8002a26:	1c43      	adds	r3, r0, #1
- 8002a28:	d102      	bne.n	8002a30 <_kill_r+0x1c>
- 8002a2a:	682b      	ldr	r3, [r5, #0]
- 8002a2c:	b103      	cbz	r3, 8002a30 <_kill_r+0x1c>
- 8002a2e:	6023      	str	r3, [r4, #0]
- 8002a30:	bd38      	pop	{r3, r4, r5, pc}
- 8002a32:	bf00      	nop
- 8002a34:	20000210 	.word	0x20000210
+08002a28 <_raise_r>:
+ 8002a28:	291f      	cmp	r1, #31
+ 8002a2a:	b538      	push	{r3, r4, r5, lr}
+ 8002a2c:	4604      	mov	r4, r0
+ 8002a2e:	460d      	mov	r5, r1
+ 8002a30:	d904      	bls.n	8002a3c <_raise_r+0x14>
+ 8002a32:	2316      	movs	r3, #22
+ 8002a34:	6003      	str	r3, [r0, #0]
+ 8002a36:	f04f 30ff 	mov.w	r0, #4294967295
+ 8002a3a:	bd38      	pop	{r3, r4, r5, pc}
+ 8002a3c:	6bc2      	ldr	r2, [r0, #60]	; 0x3c
+ 8002a3e:	b112      	cbz	r2, 8002a46 <_raise_r+0x1e>
+ 8002a40:	f852 3021 	ldr.w	r3, [r2, r1, lsl #2]
+ 8002a44:	b94b      	cbnz	r3, 8002a5a <_raise_r+0x32>
+ 8002a46:	4620      	mov	r0, r4
+ 8002a48:	f000 f830 	bl	8002aac <_getpid_r>
+ 8002a4c:	462a      	mov	r2, r5
+ 8002a4e:	4601      	mov	r1, r0
+ 8002a50:	4620      	mov	r0, r4
+ 8002a52:	e8bd 4038 	ldmia.w	sp!, {r3, r4, r5, lr}
+ 8002a56:	f000 b817 	b.w	8002a88 <_kill_r>
+ 8002a5a:	2b01      	cmp	r3, #1
+ 8002a5c:	d00a      	beq.n	8002a74 <_raise_r+0x4c>
+ 8002a5e:	1c59      	adds	r1, r3, #1
+ 8002a60:	d103      	bne.n	8002a6a <_raise_r+0x42>
+ 8002a62:	2316      	movs	r3, #22
+ 8002a64:	6003      	str	r3, [r0, #0]
+ 8002a66:	2001      	movs	r0, #1
+ 8002a68:	e7e7      	b.n	8002a3a <_raise_r+0x12>
+ 8002a6a:	2400      	movs	r4, #0
+ 8002a6c:	4628      	mov	r0, r5
+ 8002a6e:	f842 4025 	str.w	r4, [r2, r5, lsl #2]
+ 8002a72:	4798      	blx	r3
+ 8002a74:	2000      	movs	r0, #0
+ 8002a76:	e7e0      	b.n	8002a3a <_raise_r+0x12>
 
-08002a38 <_getpid_r>:
- 8002a38:	f7fd bea2 	b.w	8000780 <_getpid>
+08002a78 <raise>:
+ 8002a78:	4b02      	ldr	r3, [pc, #8]	; (8002a84 <raise+0xc>)
+ 8002a7a:	4601      	mov	r1, r0
+ 8002a7c:	6818      	ldr	r0, [r3, #0]
+ 8002a7e:	f7ff bfd3 	b.w	8002a28 <_raise_r>
+ 8002a82:	bf00      	nop
+ 8002a84:	20000058 	.word	0x20000058
 
-08002a3c <_sbrk_r>:
- 8002a3c:	b538      	push	{r3, r4, r5, lr}
- 8002a3e:	2300      	movs	r3, #0
- 8002a40:	4d05      	ldr	r5, [pc, #20]	; (8002a58 <_sbrk_r+0x1c>)
- 8002a42:	4604      	mov	r4, r0
- 8002a44:	4608      	mov	r0, r1
- 8002a46:	602b      	str	r3, [r5, #0]
- 8002a48:	f7fd febc 	bl	80007c4 <_sbrk>
- 8002a4c:	1c43      	adds	r3, r0, #1
- 8002a4e:	d102      	bne.n	8002a56 <_sbrk_r+0x1a>
- 8002a50:	682b      	ldr	r3, [r5, #0]
- 8002a52:	b103      	cbz	r3, 8002a56 <_sbrk_r+0x1a>
- 8002a54:	6023      	str	r3, [r4, #0]
- 8002a56:	bd38      	pop	{r3, r4, r5, pc}
- 8002a58:	20000210 	.word	0x20000210
+08002a88 <_kill_r>:
+ 8002a88:	b538      	push	{r3, r4, r5, lr}
+ 8002a8a:	2300      	movs	r3, #0
+ 8002a8c:	4d06      	ldr	r5, [pc, #24]	; (8002aa8 <_kill_r+0x20>)
+ 8002a8e:	4604      	mov	r4, r0
+ 8002a90:	4608      	mov	r0, r1
+ 8002a92:	4611      	mov	r1, r2
+ 8002a94:	602b      	str	r3, [r5, #0]
+ 8002a96:	f7fd fe7a 	bl	800078e <_kill>
+ 8002a9a:	1c43      	adds	r3, r0, #1
+ 8002a9c:	d102      	bne.n	8002aa4 <_kill_r+0x1c>
+ 8002a9e:	682b      	ldr	r3, [r5, #0]
+ 8002aa0:	b103      	cbz	r3, 8002aa4 <_kill_r+0x1c>
+ 8002aa2:	6023      	str	r3, [r4, #0]
+ 8002aa4:	bd38      	pop	{r3, r4, r5, pc}
+ 8002aa6:	bf00      	nop
+ 8002aa8:	20000210 	.word	0x20000210
 
-08002a5c <__errno>:
- 8002a5c:	4b01      	ldr	r3, [pc, #4]	; (8002a64 <__errno+0x8>)
- 8002a5e:	6818      	ldr	r0, [r3, #0]
- 8002a60:	4770      	bx	lr
- 8002a62:	bf00      	nop
- 8002a64:	20000058 	.word	0x20000058
+08002aac <_getpid_r>:
+ 8002aac:	f7fd be68 	b.w	8000780 <_getpid>
 
-08002a68 <__libc_init_array>:
- 8002a68:	b570      	push	{r4, r5, r6, lr}
- 8002a6a:	2600      	movs	r6, #0
- 8002a6c:	4d0c      	ldr	r5, [pc, #48]	; (8002aa0 <__libc_init_array+0x38>)
- 8002a6e:	4c0d      	ldr	r4, [pc, #52]	; (8002aa4 <__libc_init_array+0x3c>)
- 8002a70:	1b64      	subs	r4, r4, r5
- 8002a72:	10a4      	asrs	r4, r4, #2
- 8002a74:	42a6      	cmp	r6, r4
- 8002a76:	d109      	bne.n	8002a8c <__libc_init_array+0x24>
- 8002a78:	f000 f81c 	bl	8002ab4 <_init>
- 8002a7c:	2600      	movs	r6, #0
- 8002a7e:	4d0a      	ldr	r5, [pc, #40]	; (8002aa8 <__libc_init_array+0x40>)
- 8002a80:	4c0a      	ldr	r4, [pc, #40]	; (8002aac <__libc_init_array+0x44>)
- 8002a82:	1b64      	subs	r4, r4, r5
- 8002a84:	10a4      	asrs	r4, r4, #2
- 8002a86:	42a6      	cmp	r6, r4
- 8002a88:	d105      	bne.n	8002a96 <__libc_init_array+0x2e>
- 8002a8a:	bd70      	pop	{r4, r5, r6, pc}
- 8002a8c:	f855 3b04 	ldr.w	r3, [r5], #4
- 8002a90:	4798      	blx	r3
- 8002a92:	3601      	adds	r6, #1
- 8002a94:	e7ee      	b.n	8002a74 <__libc_init_array+0xc>
- 8002a96:	f855 3b04 	ldr.w	r3, [r5], #4
- 8002a9a:	4798      	blx	r3
- 8002a9c:	3601      	adds	r6, #1
- 8002a9e:	e7f2      	b.n	8002a86 <__libc_init_array+0x1e>
- 8002aa0:	08002af0 	.word	0x08002af0
- 8002aa4:	08002af0 	.word	0x08002af0
- 8002aa8:	08002af0 	.word	0x08002af0
- 8002aac:	08002af4 	.word	0x08002af4
+08002ab0 <_sbrk_r>:
+ 8002ab0:	b538      	push	{r3, r4, r5, lr}
+ 8002ab2:	2300      	movs	r3, #0
+ 8002ab4:	4d05      	ldr	r5, [pc, #20]	; (8002acc <_sbrk_r+0x1c>)
+ 8002ab6:	4604      	mov	r4, r0
+ 8002ab8:	4608      	mov	r0, r1
+ 8002aba:	602b      	str	r3, [r5, #0]
+ 8002abc:	f7fd fe82 	bl	80007c4 <_sbrk>
+ 8002ac0:	1c43      	adds	r3, r0, #1
+ 8002ac2:	d102      	bne.n	8002aca <_sbrk_r+0x1a>
+ 8002ac4:	682b      	ldr	r3, [r5, #0]
+ 8002ac6:	b103      	cbz	r3, 8002aca <_sbrk_r+0x1a>
+ 8002ac8:	6023      	str	r3, [r4, #0]
+ 8002aca:	bd38      	pop	{r3, r4, r5, pc}
+ 8002acc:	20000210 	.word	0x20000210
 
-08002ab0 <__retarget_lock_acquire_recursive>:
- 8002ab0:	4770      	bx	lr
+08002ad0 <__errno>:
+ 8002ad0:	4b01      	ldr	r3, [pc, #4]	; (8002ad8 <__errno+0x8>)
+ 8002ad2:	6818      	ldr	r0, [r3, #0]
+ 8002ad4:	4770      	bx	lr
+ 8002ad6:	bf00      	nop
+ 8002ad8:	20000058 	.word	0x20000058
 
-08002ab2 <__retarget_lock_release_recursive>:
- 8002ab2:	4770      	bx	lr
+08002adc <__libc_init_array>:
+ 8002adc:	b570      	push	{r4, r5, r6, lr}
+ 8002ade:	2600      	movs	r6, #0
+ 8002ae0:	4d0c      	ldr	r5, [pc, #48]	; (8002b14 <__libc_init_array+0x38>)
+ 8002ae2:	4c0d      	ldr	r4, [pc, #52]	; (8002b18 <__libc_init_array+0x3c>)
+ 8002ae4:	1b64      	subs	r4, r4, r5
+ 8002ae6:	10a4      	asrs	r4, r4, #2
+ 8002ae8:	42a6      	cmp	r6, r4
+ 8002aea:	d109      	bne.n	8002b00 <__libc_init_array+0x24>
+ 8002aec:	f000 f81c 	bl	8002b28 <_init>
+ 8002af0:	2600      	movs	r6, #0
+ 8002af2:	4d0a      	ldr	r5, [pc, #40]	; (8002b1c <__libc_init_array+0x40>)
+ 8002af4:	4c0a      	ldr	r4, [pc, #40]	; (8002b20 <__libc_init_array+0x44>)
+ 8002af6:	1b64      	subs	r4, r4, r5
+ 8002af8:	10a4      	asrs	r4, r4, #2
+ 8002afa:	42a6      	cmp	r6, r4
+ 8002afc:	d105      	bne.n	8002b0a <__libc_init_array+0x2e>
+ 8002afe:	bd70      	pop	{r4, r5, r6, pc}
+ 8002b00:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8002b04:	4798      	blx	r3
+ 8002b06:	3601      	adds	r6, #1
+ 8002b08:	e7ee      	b.n	8002ae8 <__libc_init_array+0xc>
+ 8002b0a:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8002b0e:	4798      	blx	r3
+ 8002b10:	3601      	adds	r6, #1
+ 8002b12:	e7f2      	b.n	8002afa <__libc_init_array+0x1e>
+ 8002b14:	08002b64 	.word	0x08002b64
+ 8002b18:	08002b64 	.word	0x08002b64
+ 8002b1c:	08002b64 	.word	0x08002b64
+ 8002b20:	08002b68 	.word	0x08002b68
 
-08002ab4 <_init>:
- 8002ab4:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 8002ab6:	bf00      	nop
- 8002ab8:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 8002aba:	bc08      	pop	{r3}
- 8002abc:	469e      	mov	lr, r3
- 8002abe:	4770      	bx	lr
+08002b24 <__retarget_lock_acquire_recursive>:
+ 8002b24:	4770      	bx	lr
 
-08002ac0 <_fini>:
- 8002ac0:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 8002ac2:	bf00      	nop
- 8002ac4:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 8002ac6:	bc08      	pop	{r3}
- 8002ac8:	469e      	mov	lr, r3
- 8002aca:	4770      	bx	lr
+08002b26 <__retarget_lock_release_recursive>:
+ 8002b26:	4770      	bx	lr
+
+08002b28 <_init>:
+ 8002b28:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8002b2a:	bf00      	nop
+ 8002b2c:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8002b2e:	bc08      	pop	{r3}
+ 8002b30:	469e      	mov	lr, r3
+ 8002b32:	4770      	bx	lr
+
+08002b34 <_fini>:
+ 8002b34:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8002b36:	bf00      	nop
+ 8002b38:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8002b3a:	bc08      	pop	{r3}
+ 8002b3c:	469e      	mov	lr, r3
+ 8002b3e:	4770      	bx	lr

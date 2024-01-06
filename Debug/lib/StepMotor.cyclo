@@ -1,15 +1,17 @@
 ../lib/StepMotor.cpp:4:2:StepMotor::StepMotor(GPIO_TypeDef*, uint16_t, GPIO_TypeDef*, uint16_t, TIM_HandleTypeDef*, uint32_t)	1
-../lib/StepMotor.cpp:33:7:void StepMotor::motorService()	4
-../lib/StepMotor.cpp:67:7:void StepMotor::checkMotorInCallback(TIM_HandleTypeDef*)	2
-../lib/StepMotor.cpp:77:7:void StepMotor::setDirection(uint8_t)	1
-../lib/StepMotor.cpp:87:7:void StepMotor::startMotion(uint32_t)	2
-../lib/StepMotor.cpp:97:7:void StepMotor::stopMotion()	1
-../lib/StepMotor.cpp:102:7:void StepMotor::setMaxSpeed(uint32_t)	1
-../lib/StepMotor.cpp:107:11:uint32_t StepMotor::getSpeed()	1
-../lib/StepMotor.cpp:112:11:uint32_t StepMotor::getMaxSpeed()	1
-../lib/StepMotor.cpp:118:7:void StepMotor::setMinSpeed(uint32_t)	1
-../lib/StepMotor.cpp:123:11:uint32_t StepMotor::getMinSpeed()	1
-../lib/StepMotor.cpp:128:7:void StepMotor::setRetention(bool)	3
-../lib/StepMotor.cpp:138:7:void StepMotor::setSpeed(uint32_t)	2
-../lib/StepMotor.cpp:150:7:void StepMotor::setAccelerationStep(uint32_t, uint32_t)	1
-../lib/StepMotor.cpp:163:7:void StepMotor::accelerationService(int)	4
+../lib/StepMotor.cpp:41:7:void StepMotor::motorService()	4
+../lib/StepMotor.cpp:70:7:void StepMotor::checkMotorInCallback(TIM_HandleTypeDef*)	2
+../lib/StepMotor.cpp:78:7:void StepMotor::setDirection(uint8_t)	1
+../lib/StepMotor.cpp:88:7:void StepMotor::startMotion(uint32_t)	2
+../lib/StepMotor.cpp:98:7:void StepMotor::stopMotion()	1
+../lib/StepMotor.cpp:103:7:void StepMotor::setMaxSpeed(uint32_t)	1
+../lib/StepMotor.cpp:108:11:uint32_t StepMotor::getSpeed()	1
+../lib/StepMotor.cpp:113:11:uint32_t StepMotor::getMaxSpeed()	1
+../lib/StepMotor.cpp:119:7:void StepMotor::setMinSpeed(uint32_t)	1
+../lib/StepMotor.cpp:124:11:uint32_t StepMotor::getMinSpeed()	1
+../lib/StepMotor.cpp:129:7:void StepMotor::setRetention(bool)	3
+../lib/StepMotor.cpp:139:7:void StepMotor::setSpeed(uint32_t)	2
+../lib/StepMotor.cpp:151:7:void StepMotor::setAccelerationStep(uint32_t, uint32_t)	1
+../lib/StepMotor.cpp:157:7:void StepMotor::accelerationService(uint32_t)	5
+../lib/StepMotor.cpp:171:7:void StepMotor::setBrakeMotorStep(uint32_t, uint32_t)	1
+../lib/StepMotor.cpp:177:7:void StepMotor::brakeService(uint32_t)	5

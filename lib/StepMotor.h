@@ -9,6 +9,7 @@
 #include "stm32f1xx_hal.h"
 #include "main.h"
 
+
 class StepMotor{
 
 public:
@@ -16,8 +17,15 @@ public:
 			uint16_t pin_Dir, TIM_HandleTypeDef *htim_PWM, uint32_t Channel);
 
 
-	uint32_t pwm;
 	uint32_t m_counterSteps;
+
+private:
+	enum TYPE_MOTION{
+		NO_MOTION = 0,
+		ACCELERATION = 1,
+		MOTION = 2,
+		BRACKING = 3
+	};
 
 	private:
 	GPIO_TypeDef *m_GPIOx_Enable;
@@ -30,20 +38,17 @@ public:
 	TIM_HandleTypeDef *p_htim_PWM;
 
 	uint32_t m_Channel;
-	uint8_t m_direction;
-	uint32_t m_nStepsforRun;
+	bool m_direction;
+	uint32_t m_nStepsForMotion;
 	uint32_t m_MaxSpeed;
 	uint32_t m_MinSpeed;
 	bool m_Retention;
-	uint32_t m_AccelerationKoefficient;
-	uint32_t m_LastAcceleration_time;
 	uint32_t m_AccelerationStep;
-	bool m_inMotion;
 	uint32_t m_speed;
-	uint32_t m_stepEndAccep;
-
-	bool m_FlagRazgona;
-	bool m_FlagTormoza;
+	uint32_t m_stepEndAcceleration;
+	uint32_t m_brakeSteps;
+	uint32_t m_stepsStartBrake;
+	TYPE_MOTION typeMotion;
 
 	public:
 	void setDirection(uint8_t direction);
@@ -51,7 +56,7 @@ public:
 	inline uint8_t getDirection();
 	void startMotion(uint32_t steps);
 	void stopMotion();
-	void accelerationService(int i);
+	void accelerationService(uint32_t i);
 	void setMaxSpeed(uint32_t speed);
 	uint32_t getSpeed();
 	void setAccelerationStep(uint32_t step,  uint32_t stepEndAccep);
@@ -60,6 +65,8 @@ public:
 	void setMinSpeed(uint32_t speed);
 	uint32_t getMinSpeed();
 	void setRetention(bool);
+	void setBrakeMotorStep(uint32_t stepsBrake, uint32_t pointStartBraking);
+	void brakeService(uint32_t i);
 
 
 
