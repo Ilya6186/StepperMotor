@@ -159,7 +159,7 @@
 		}
 		*/
 	}
-
+// test
 	void StepMotor::accelerationService(int i)
 	{
 		if (i == 0 || i > m_stepEndAccep)
